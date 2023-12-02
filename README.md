@@ -5,6 +5,7 @@ Successor to the [Stoatboard](https://github.com/MaprilBear/Stoatboard)
 - Slighty larger IPS display
 - "63%" Layout
   - 65% but without INS/DEL, HOME/END, and PG UP/DN buttons
+- No longer hotswap
 - Per-key RGB Lighting
 - Improved Firmware
   - Programmable Macros
