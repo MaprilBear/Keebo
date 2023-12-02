@@ -1,0 +1,75 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: bluetooth_hid_keyboard
+label: bluetooth_hid_keyboard
+description: |
+  This is an example for Bluetooth LE HID device development, which can connect wirelessly to HID hosts including Windows, Mac, Android and iOS systems.
+category: Bluetooth Examples
+filter:
+- name: Device Type
+  value: [SoC]
+- name: Project Difficulty
+  value: [Advanced]
+- name: Wireless Technology
+  value: [Bluetooth]
+package: Bluetooth
+quality: experimental
+readme:
+- {path: README.md}
+source:
+- {path: main.c}
+- {path: app.c}
+tag: ['hardware:rf:band:2400']
+include:
+- path: ''
+  file_list:
+  - {path: app.h}
+sdk: {id: gecko_sdk, version: 4.3.2}
+toolchain_settings: []
+component:
+- instance: [btn0]
+  id: simple_button
+- {id: bluetooth_feature_gatt_server}
+- {id: bluetooth_feature_sm}
+- {id: bluetooth_feature_legacy_advertiser}
+- {id: mpu}
+- {id: gatt_configuration}
+- {id: gatt_service_device_information}
+- instance: [status_led]
+  id: simple_led
+- {id: bluetooth_stack}
+- {id: rail_util_pti}
+- {id: bluetooth_feature_gatt}
+- {id: uartdrv_core}
+- {id: brd4314a}
+- {id: BGM220PC22HNA}
+- {id: bluetooth_feature_legacy_scanner}
+- instance: [tm4c]
+  id: uartdrv_usart
+- {id: app_log}
+- instance: [EM4_WAKEUP]
+  id: emlib_gpio_simple_init
+- {id: bt_post_build}
+- {id: bluetooth_feature_connection}
+- instance: [DEBUG]
+  id: iostream_usart
+- {id: bluetooth_feature_system}
+- {id: component_catalog}
+- {id: app_assert}
+other_file:
+- {path: images/create_project.png}
+- {path: images/report.png}
+- {path: images/logs.png}
+configuration:
+- {name: SL_STACK_SIZE, value: '2752'}
+- {name: SL_HEAP_SIZE, value: '9200'}
+- condition: [iostream_usart]
+  name: SL_BOARD_ENABLE_VCOM
+  value: '1'
+- condition: [psa_crypto]
+  name: SL_PSA_KEY_USER_SLOT_COUNT
+  value: '0'
+ui_hints:
+  highlight:
+  - {path: README.md, focus: true}
+  - {path: config/btconf/gatt_configuration.btconf}
+

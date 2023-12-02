@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TM4C123GH6PMIR
+D High performance 32-bit ARM&#174; Cortex&#174;-M4F based MCU
+K
+F http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Ftm4c123gh6pm
+$ENDCMP
+#
+#End Doc Library

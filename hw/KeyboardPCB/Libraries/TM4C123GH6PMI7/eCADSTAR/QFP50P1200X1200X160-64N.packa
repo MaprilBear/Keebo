@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "TM4C123GH6PMI7"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2020-09-19-04:42:02)
+    (mountForm default
+        (footprintRef "QFP50P1200X1200X160-64N")
+        (spec "System")
+    )
+)

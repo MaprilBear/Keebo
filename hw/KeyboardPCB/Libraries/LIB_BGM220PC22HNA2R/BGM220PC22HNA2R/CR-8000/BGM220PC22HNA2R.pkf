@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "BGM220PC22HNA2R"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "BGM220PC22HNA2R")
+        (spec "default")
+    )
+)

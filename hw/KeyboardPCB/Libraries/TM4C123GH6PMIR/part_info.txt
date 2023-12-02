@@ -1,0 +1,9 @@
+Manufacturer=Texas Instruments
+PartNumber=TM4C123GH6PMIR
+PartCategory=Integrated Circuit
+PackageCategory=Quad Flat Packages
+PinCount=64
+Version=2.1
+Released=2019-04-05 06:29:47
+Downloaded=2023-10-28 21:10:54
+3D=Y

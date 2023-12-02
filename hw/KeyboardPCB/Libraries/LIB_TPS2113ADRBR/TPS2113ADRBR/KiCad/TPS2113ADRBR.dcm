@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TPS2113ADRBR
+D Power Switch ICs - Power Distribution Autoswitching Pwr Mux
+K
+F https://www.ti.com/lit/gpn/TPS2113A
+$ENDCMP
+#
+#End Doc Library

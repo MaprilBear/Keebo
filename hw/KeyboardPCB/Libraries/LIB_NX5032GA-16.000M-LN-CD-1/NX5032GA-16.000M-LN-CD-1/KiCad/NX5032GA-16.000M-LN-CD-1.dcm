@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP NX5032GA-16.000M-LN-CD-1
+D Crystals CRYSTAL 16MHZ 8PF SMD
+K
+F https://media.digikey.com/pdf/Data%20Sheets/NDK%20PDFs/NX5032GA.pdf
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,594 @@
+#include <stdint.h>
+#include <stdbool.h>
+
+extern bool envelope;
+extern uint8_t envelope_index;
+
+#define MEGALOVANIA 0
+#define RICK_ROLL 1
+
+// 120 bpm
+#define WHOLE          160000000
+#define HALF            80000000
+#define QUARTER         40000000
+#define EIGTH           20000000
+#define SIXTEENTH       10000000
+#define THIRTYSECOND     5000000
+#define SIXTYFOURTH      2500000
+#define ONETWENTYEIGHTH  1250000
+
+#define C1    33
+#define Csh1  35
+#define D1    37
+#define Dsh1  39
+#define E1    41
+#define F1    44
+#define Fsh1  46
+#define G1    49
+#define Gsh1  52
+#define A1    55
+#define Ash1  58
+#define B1    62
+#define C2    65
+#define Csh2  69
+#define D2    73
+#define Dsh2  78
+#define E2    82
+#define F2    87
+#define Fsh2  93
+#define G2    98
+#define Gsh2  104
+#define A2    110
+#define Ash2  117
+#define B2    123
+#define C3    131
+#define Csh3  139
+#define D3    147
+#define Dsh3  156
+#define E3    165
+#define F3    175
+#define Fsh3  185
+#define G3    196
+#define Gsh3  208
+#define A3    220
+#define Ash3  233
+#define B3    245
+#define C4    261
+#define Csh4  277
+#define D4    294
+#define Dsh4  311
+#define E4    330
+#define F4    350
+#define Fsh4  370
+#define G4    392
+#define Gsh4  415
+#define A4    440
+#define Ash4  466
+#define B4    493
+#define C5    523
+#define Csh5  554
+#define D5    587
+#define Dsh5  622
+#define E5    659
+#define F5    698
+#define Fsh5  740
+#define G5    784
+#define Gsh5  831
+#define A5    880
+#define Ash5  932
+#define B5    988
+#define C6    1047
+#define Csh6  1109
+#define D6    1175
+#define Dsh6  1245
+#define E6    1319
+#define F6    1397
+#define Fsh6  1480
+#define G6    1568
+#define Gsh6  1661
+#define A6    1760
+#define Ash6  1865
+#define B6    1976
+#define C7    2093
+
+#define REST    1
+
+typedef struct song_t{
+	uint32_t* song_array;
+} song_t;
+
+#define MEGALOVANIA_LENGTH 308
+// Note, Duration
+static uint32_t megalovania[MEGALOVANIA_LENGTH][2] = {
+  {D2, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {D2, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A2, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D2, SIXTEENTH},
+  {F2, SIXTEENTH},
+  {G2, SIXTEENTH},
+
+  {C2, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {C2, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A2, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D2, SIXTEENTH},
+  {F2, SIXTEENTH},
+  {G2, SIXTEENTH},
+
+  {B1, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {B1, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A2, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D2, SIXTEENTH},
+  {F2, SIXTEENTH},
+  {G2, SIXTEENTH},
+
+  {Ash1, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {Ash1, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A2, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F2, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D2, SIXTEENTH},
+  {F2, SIXTEENTH},
+  {G2, SIXTEENTH},
+
+  {D3, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {D3, SIXTEENTH},
+  {D4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A3, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {G3, SIXTEENTH},
+
+  {C3, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {C3, SIXTEENTH},
+  {D4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A3, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {G3, SIXTEENTH},
+
+  {B2, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {B2, SIXTEENTH},
+  {D4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A3, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {G3, SIXTEENTH},
+
+  {Ash2, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {Ash2, SIXTEENTH},
+  {D4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A3, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {G3, SIXTEENTH},
+
+  {D4, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {D4, SIXTEENTH},
+  {D5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A4, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D4, SIXTEENTH},
+  {F4, SIXTEENTH},
+  {G4, SIXTEENTH},
+
+  {C4, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {C4, SIXTEENTH},
+  {D5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A4, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D4, SIXTEENTH},
+  {F4, SIXTEENTH},
+  {G4, SIXTEENTH},
+
+  {B3, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {B3, SIXTEENTH},
+  {D5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A4, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D4, SIXTEENTH},
+  {F4, SIXTEENTH},
+  {G4, SIXTEENTH},
+
+  {Ash3, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {Ash3, SIXTEENTH},
+  {D5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A4, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D4, SIXTEENTH},
+  {F4, SIXTEENTH},
+  {G4, SIXTEENTH},
+
+  {D5, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {D5, SIXTEENTH},
+  {D6, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A5, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D5, SIXTEENTH},
+  {F5, SIXTEENTH},
+  {G5, SIXTEENTH},
+
+  {C5, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {C5, SIXTEENTH},
+  {D6, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A5, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D5, SIXTEENTH},
+  {F5, SIXTEENTH},
+  {G5, SIXTEENTH},
+
+  {B4, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {B4, SIXTEENTH},
+  {D6, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A5, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D5, SIXTEENTH},
+  {F5, SIXTEENTH},
+  {G5, SIXTEENTH},
+  
+  {Ash4, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {Ash4, SIXTEENTH},
+  {D6, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {A5, EIGTH},
+  {REST, SIXTEENTH},
+  {Gsh5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F5, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {D5, SIXTEENTH},
+  {F5, SIXTEENTH},
+  {G5, SIXTEENTH},
+
+  {F4, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {F4, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {F4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {F4, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {F4, EIGTH},
+  {D4, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {D4, SIXTEENTH + QUARTER},
+
+  {F4, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {F4, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {F4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G4, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {Gsh4, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {G4, THIRTYSECOND},
+  {A4, THIRTYSECOND},
+  {G4, THIRTYSECOND},
+  {F4, SIXTEENTH},
+  {D4, SIXTEENTH},
+  {F4, SIXTEENTH},
+  {G4, SIXTEENTH},
+  {REST, EIGTH},
+
+  {F4, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {F4, SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {F4, SIXTEENTH},
+  {REST, SIXTEENTH},
+  {G4, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {Gsh4, EIGTH},
+  {A4, EIGTH},
+  {C5, EIGTH},
+  {A4, EIGTH},
+  {D5, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {D5, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {D5, SIXTEENTH},
+  {A4, SIXTEENTH},
+  {D5, SIXTEENTH},
+  {C5, SIXTEENTH},
+  {REST, QUARTER},
+  {G5, QUARTER}
+};
+
+
+
+#define RICK_LENGTH 135
+// Note, Duration
+static uint32_t rick[RICK_LENGTH][2] = {
+	{D3, EIGTH},
+  {E3, EIGTH},
+  {F3, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {F3, EIGTH},
+  {G3, EIGTH},
+  {E3, EIGTH + SIXTEENTH},
+  {D3, SIXTEENTH},
+  {C3, EIGTH + HALF},
+  {REST, QUARTER},
+  
+  {REST, EIGTH},
+  {D3, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {D3, EIGTH},
+  {E3, EIGTH},
+  {F3, EIGTH},
+  {D3, QUARTER},
+  {C3, EIGTH},
+  {C4, EIGTH + SIXTEENTH},
+  {REST, SIXTEENTH},
+  {C4, EIGTH},
+  {G3, HALF},
+  {REST, EIGTH},
+
+  {D3, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {D3, EIGTH},
+  {E3, EIGTH},
+  {F3, EIGTH},
+  {D3, EIGTH},
+  {F3, EIGTH},
+  {G3, EIGTH},
+
+  {REST, EIGTH},
+  {E3, EIGTH},
+  {D3, EIGTH},
+  {C3, EIGTH + QUARTER},
+  {REST, QUARTER},
+
+  {REST, EIGTH},
+  {D3, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {D3, EIGTH},
+  {E3, EIGTH},
+  {F3, EIGTH},
+  {D3, EIGTH},
+  {C3, QUARTER},
+  
+  {G3, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {G3, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {G3, EIGTH},
+  {A3, EIGTH},
+  {G3, QUARTER},
+  {REST, QUARTER},
+
+  {F3, HALF + EIGTH},
+  {G3, EIGTH},
+  {A3, EIGTH},
+  {F3, EIGTH},
+
+  {G3, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {G3, EIGTH},
+  {REST, ONETWENTYEIGHTH},
+  {G3, EIGTH},
+  {A3, EIGTH},
+  {G3, QUARTER},
+  {C3, QUARTER},
+  
+  {REST, HALF},
+  {D3, EIGTH},
+  {E3, EIGTH},
+  {F3, EIGTH},
+  {D3, EIGTH},
+
+  {REST, EIGTH},
+  {G3, EIGTH},
+  {A3, EIGTH},
+  {G3, EIGTH + QUARTER},
+  {C3, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {D3, SIXTEENTH},
+
+  {A3, EIGTH + SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {A3, SIXTEENTH + EIGTH},
+  {G3, EIGTH + QUARTER},
+  {C3, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {D3, SIXTEENTH},
+
+  {G3, EIGTH + SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {G3, SIXTEENTH + EIGTH},
+  {F3, EIGTH + SIXTEENTH},
+  {E3, SIXTEENTH},
+  {D3, EIGTH},
+  {C3, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {D3, SIXTEENTH},
+
+  {F3, QUARTER},
+  {G3, EIGTH},
+  {E3, EIGTH + SIXTEENTH},
+  {D3, SIXTEENTH},
+  {C3, QUARTER},
+  {REST, ONETWENTYEIGHTH},
+  {C3, EIGTH},
+
+  {G3, QUARTER},
+  {F3, HALF},
+  {C3, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {D3, SIXTEENTH},
+
+  {A3, EIGTH + SIXTEENTH},
+  {REST, ONETWENTYEIGHTH},
+  {A3, SIXTEENTH + EIGTH},
+  {G3, EIGTH + QUARTER},
+  {C3, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {D3, SIXTEENTH},
+
+  {C4, QUARTER},
+  {E3, EIGTH},
+  {F3, EIGTH + SIXTEENTH},
+  {E3, SIXTEENTH},
+  {D3, EIGTH},
+  {C3, SIXTEENTH},
+  {D3, SIXTEENTH},
+  {F3, SIXTEENTH},
+  {D3, SIXTEENTH},
+
+  {F3, QUARTER},
+  {G3, EIGTH},
+  {E3, EIGTH + SIXTEENTH},
+  {D3, SIXTEENTH},
+  {C3, QUARTER},
+  {REST, ONETWENTYEIGHTH},
+  {C3, EIGTH},
+
+  {G3, QUARTER},
+  {F3, HALF},
+  {REST, QUARTER}
+};
+
+void Music_Init();
+
+void Music_Start(short song_select);
+
+void Music_Stop();

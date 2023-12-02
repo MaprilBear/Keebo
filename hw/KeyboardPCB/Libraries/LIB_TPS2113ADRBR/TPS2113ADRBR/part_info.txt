@@ -1,0 +1,9 @@
+Manufacturer=Texas Instruments
+PartNumber=TPS2113ADRBR
+PartCategory=Integrated Circuit
+PackageCategory=Small Outline No-lead
+PinCount=9
+Version=1.1
+Released=2020-02-27 06:32:36
+Downloaded=2023-10-26 23:31:20
+3D=Y

@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'NX5032GA_16.000M_LN_CD_1'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "NDK", "NX5032GA-16.000M-LN-CD-1" (!) = "", "NX5032GA16000000MHZLNCD1", "Other", "344-NX5032GA16MLNCD1", "https://www.mouser.co.uk/ProductDetail/NDK/NX5032GA-16.000M-LN-CD-1?qs=55YtniHzbhDnyNixVDBwYw%3D%3D", "Crystals CRYSTAL 16MHZ 8PF SMD", "https://media.digikey.com/pdf/Data%20Sheets/NDK%20PDFs/NX5032GA.pdf", "1.5 mm"
+END_PART
+
+END.

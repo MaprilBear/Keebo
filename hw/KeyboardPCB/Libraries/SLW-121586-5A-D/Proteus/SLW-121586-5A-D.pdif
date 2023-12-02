@@ -1,0 +1,154 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "SLW-121586-5A-D"
+   (description "Slide Switches 12.1 x 5.8 x 6 mm, 5 mm Raised Slide Actuator, Vertical, Through Hole")
+   (family "SWI")
+   (package "SLW1215865AD")
+   (attribute "Datasheet Link" "https://www.cuidevices.com/product/resource/slw-121586-5a-d.pdf")
+   (attribute "Geometry.Height" "11.2mm")
+   (attribute "Mouser Part Number" "179-SLW-121586-5A-D")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/CUI-Devices/SLW-121586-5A-D?qs=1Kr7Jg1SGW%252BUgUB4TCZoyg%3D%3D")
+   (attribute "Manufacturer_Name" "CUI Devices")
+   (attribute "Manufacturer_Part_Number" "SLW-121586-5A-D")
+   (gate
+    (symbol "SLW-121586-5A-D")
+    (pin "NC" 1 NC)
+    (pin "COM" 2 PS)
+    (pin "NO" 3 PS)
+    (pin "MH1" MH1 PS)
+    (pin "MH2" MH2 PS)
+   )
+  )
+  (symbol "SLW-121586-5A-D"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 700 100) (pt 700 -500) (pt 200 -500) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -300) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -400) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "SLW1215865AD"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -3.05 2.9)
+      (pt 9.05 2.9)
+      (pt 9.05 -2.9)
+      (pt -3.05 -2.9)
+      (pt -3.05 2.9))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -4.992 3.9)
+      (pt 10.992 3.9)
+      (pt 10.992 -3.9)
+      (pt -4.992 -3.9)
+      (pt -4.992 3.9))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -3.05 1.4)
+      (pt -3.05 2.9)
+      (pt 9.05 2.9)
+      (pt 9.05 1.4))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt 9.05 -1.4)
+      (pt 9.05 -2.9)
+      (pt -3.05 -2.9)
+      (pt -3.05 -1.4))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt 0 -3.4)
+      (arc (pt 0.000 -3.400) (pt -0.050 -3.500) (pt 0.050 -3.400) (start 180.0) (sweep 90.0))
+      (pt 0 -3.5)
+      (arc (pt 0.000 -3.500) (pt -0.050 -3.500) (pt 0.050 -3.400) (start 180.0) (sweep -90.0))
+      (pt 0 -3.4))))
+   (leg 1 (pt 0.000 0.000) (padstack 1))
+   (leg 2 (pt 3.000 0.000) (padstack 0))
+   (leg 3 (pt 6.000 0.000) (padstack 0))
+   (leg MH1 (pt -2.800 0.000) (padstack 4))
+   (leg MH2 (pt 8.800 0.000) (padstack 5))
+   (padstack 0
+    (hole 1.01)
+    (plated true)
+    (pad (layer TCOP) (round 1.515))
+    (pad (layer INNER) (round 1.515))
+    (pad (layer BCOP) (round 1.515))
+   )
+   (padstack 1
+    (hole 1.01)
+    (plated true)
+    (pad (layer TCOP) (square 1.515))
+    (pad (layer INNER) (round 1.515))
+    (pad (layer BCOP) (square 1.515))
+   )
+   (padstack 4
+    (hole 1.59)
+    (plated true)
+    (pad (layer TCOP) (round 2.385))
+    (pad (layer INNER) (round 2.385))
+    (pad (layer BCOP) (round 2.385))
+   )
+   (padstack 5
+    (hole 1.59)
+    (plated true)
+    (pad (layer TCOP) (round 2.385))
+    (pad (layer INNER) (round 2.385))
+    (pad (layer BCOP) (round 2.385))
+   )
+   (model "SLW-121586-5A-D.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)
