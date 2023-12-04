@@ -1,0 +1,7 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP NRF5340-QKAA-R7
+D NRF5340-QKAA-R7
+F https://infocenter.nordicsemi.com/pdf/nRF5340_PS_v1.1.pdf
+$ENDCMP
+# end doc library

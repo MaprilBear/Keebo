@@ -180,3 +180,5 @@ sw/BGM220P/bluetooth_hid_keyboard/.projectlinkstore
 hw/KeyboardPCB/KeyboardPCB-backups/
 
 sw/.vscode/
+
+*.lck
