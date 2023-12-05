@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP SN74LV138APWR
+D Texas Instruments SN74LV138APWR, Decoder, Demultiplexer, 1-of-8, Inverting, 2  5.5 V, 16-Pin TSSOP
+K
+F http://www.ti.com/lit/gpn/sn74lv138a
+$ENDCMP
+#
+#End Doc Library

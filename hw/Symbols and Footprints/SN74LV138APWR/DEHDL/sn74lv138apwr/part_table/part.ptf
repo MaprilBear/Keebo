@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'SN74LV138APWR'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Texas Instruments", "SN74LV138APWR" (!) = "", "SOP65P640X120-16N", "Small Outline Packages", "595-SN74LV138APWR", "https://www.mouser.co.uk/ProductDetail/Texas-Instruments/SN74LV138APWR?qs=gqbMQSs93zM7bjlV3MhXvw%3D%3D", "Texas Instruments SN74LV138APWR, Decoder, Demultiplexer, 1-of-8, Inverting, 2  5.5 V, 16-Pin TSSOP", "http://www.ti.com/lit/gpn/sn74lv138a", "1.2 mm"
+END_PART
+
+END.

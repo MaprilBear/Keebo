@@ -1,0 +1,7 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP VEML6030
+D VEML6030
+F https://www.vishay.com/docs/84366/veml6030.pdf
+$ENDCMP
+# end doc library

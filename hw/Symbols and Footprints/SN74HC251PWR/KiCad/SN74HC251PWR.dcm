@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP SN74HC251PWR
+D Data Selectors/Multiplexers With 3-State Outputs
+K
+F http://www.ti.com/lit/gpn/SN74HC251
+$ENDCMP
+#
+#End Doc Library
