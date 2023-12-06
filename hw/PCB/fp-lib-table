@@ -8,4 +8,5 @@
   (lib (name "SN74LV138APWR")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/SN74LV138APWR/KiCad")(options "")(descr ""))
   (lib (name "SN74HC251PWR")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/SN74HC251PWR/KiCad")(options "")(descr ""))
   (lib (name "STM32WB55RGV")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/STM32WB55RGV6/KiCADv6/footprints.pretty")(options "")(descr ""))
+  (lib (name "STM32L55RET6")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/STM32L552RET6/KiCad")(options "")(descr ""))
 )
