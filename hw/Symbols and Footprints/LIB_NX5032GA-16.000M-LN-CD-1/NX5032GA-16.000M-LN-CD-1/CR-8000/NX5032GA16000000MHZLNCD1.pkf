@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "NX5032GA16000000MHZLNCD1"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "NX5032GA16000000MHZLNCD1")
+        (spec "default")
+    )
+)

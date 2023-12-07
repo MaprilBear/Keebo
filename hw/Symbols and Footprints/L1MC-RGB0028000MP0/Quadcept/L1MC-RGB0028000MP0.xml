@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--/16494331/1234350/2.50/6/3/LED/-->
+<quadcept_library>
+  <setting unit="mil" />
+  <textstyle name="Default" height="47.244094488189" strokewidth="7.8740157480315" charwidth="47.244094488189" />
+  <textstyle name="Dimension" height="19.6850393700787" strokewidth="0" charwidth="19.6850393700787" />
+  <textstyle name="H127W0635TH00762" height="50" strokewidth="3" charwidth="25" />
+  <textstyle name="H15W15TH02" height="59.0551181102362" strokewidth="7.8740157480315" charwidth="59.0551181102362" />
+  <padstyle name="r105_56" surface="True" plated="False" isvia="False" nopaste="False" nomask="True" complex="False" holesize="0">
+    <padshape layer="TOP" shape="rectangle" width="22.047244094488" height="41.338582677165" />
+    <padshape layer="TOP_SOLDER_MASK" shape="rectangle" width="29.921259842519" height="49.212598425196" />
+    <padshape layer="TOP_SOLDER_PASTE" shape="rectangle" width="22.047244094488" height="41.338582677165" />
+  </padstyle>
+  <footprint name="L1MCRGB0028000MP0" originx="0" originy="0" pickpointx="0" pickpointy="0">
+    <pcbpin number="1" name="1" style="r105_56" originx="-56.102362204724" originy="-33.464566929133" rotation="90" />
+    <pcbpin number="2" name="2" style="r105_56" originx="56.102362204724" originy="-33.464566929133" rotation="90" />
+    <pcbpin number="3" name="3" style="r105_56" originx="-56.102362204724" originy="0" rotation="90" />
+    <pcbpin number="4" name="4" style="r105_56" originx="56.102362204724" originy="0" rotation="90" />
+    <pcbpin number="5" name="5" style="r105_56" originx="-56.102362204724" originy="33.464566929133" rotation="90" />
+    <pcbpin number="6" name="6" style="r105_56" originx="56.102362204724" originy="33.464566929133" rotation="90" />
+    <line layer="TOP_ASSEMBLY" originx="-62.992125984251" originy="55.11811023622" endx="62.992125984251" endy="55.11811023622" width="3.9370078740157" />
+    <line layer="TOP_ASSEMBLY" originx="62.992125984251" originy="55.11811023622" endx="62.992125984251" endy="-55.11811023622" width="3.9370078740157" />
+    <line layer="TOP_ASSEMBLY" originx="62.992125984251" originy="-55.11811023622" endx="-62.992125984251" endy="-55.11811023622" width="3.9370078740157" />
+    <line layer="TOP_ASSEMBLY" originx="-62.992125984251" originy="-55.11811023622" endx="-62.992125984251" endy="55.11811023622" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="-116.14173228346" originy="94.488188976377" endx="116.14173228346" endy="94.488188976377" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="116.14173228346" originy="94.488188976377" endx="116.14173228346" endy="-94.488188976377" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="116.14173228346" originy="-94.488188976377" endx="-116.14173228346" endy="-94.488188976377" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="-116.14173228346" originy="-94.488188976377" endx="-116.14173228346" endy="94.488188976377" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="-23.622047244094" originy="55.11811023622" endx="23.622047244094" endy="55.11811023622" width="7.8740157480314" />
+    <line layer="TOP_SILKSCREEN" originx="-23.622047244094" originy="-55.11811023622" endx="23.622047244094" endy="-55.11811023622" width="7.8740157480314" />
+    <line layer="TOP_SILKSCREEN" originx="-94.488188976377" originy="-33.464566929133" endx="-94.488188976377" endy="-33.464566929133" width="3.9370078740157" />
+    <arc layer="TOP_SILKSCREEN" originx="-92.519685039369" originy="-33.464566929133" startangle="180.0" sweepangle="180.0" radius="1.9685039370078" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="-90.551181102361" originy="-33.464566929133" endx="-90.551181102361" endy="-33.464566929133" width="3.9370078740157" />
+    <arc layer="TOP_SILKSCREEN" originx="-92.519685039369" originy="-33.464566929133" startangle=".0" sweepangle="180.0" radius="1.9685039370078" width="3.9370078740157" />
+  </footprint>
+  <symbol name="L1MC-RGB0028000MP0" originx="0" originy="0">
+    <line originx="200" originy="100" endx="1200" endy="100" width="0" />
+    <line originx="1200" originy="-300" endx="1200" endy="100" width="0" />
+    <line originx="1200" originy="-300" endx="200" endy="-300" width="0" />
+    <line originx="200" originy="100" endx="200" endy="-300" width="0" />
+    <sympin number="1" originx="200" originy="-200" rotation="180" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="230" originy="-200" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="K_GREEN" />
+      <text name="pindes" originx="140" originy="-180" style="Default" rotation="0" justify="lowerright" flipped="False" hidden="False" data="1" />
+    </sympin>
+    <sympin number="2" originx="1200" originy="-200" rotation="0" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="1170" originy="-200" style="Default" rotation="0" justify="right" flipped="False" hidden="False" data="A_GREEN" />
+      <text name="pindes" originx="1260" originy="-180" style="Default" rotation="0" justify="lowerleft" flipped="False" hidden="False" data="2" />
+    </sympin>
+    <sympin number="3" originx="200" originy="-100" rotation="180" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="230" originy="-100" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="K_RED" />
+      <text name="pindes" originx="140" originy="-80" style="Default" rotation="0" justify="lowerright" flipped="False" hidden="False" data="3" />
+    </sympin>
+    <sympin number="4" originx="1200" originy="-100" rotation="0" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="1170" originy="-100" style="Default" rotation="0" justify="right" flipped="False" hidden="False" data="A_RED" />
+      <text name="pindes" originx="1260" originy="-80" style="Default" rotation="0" justify="lowerleft" flipped="False" hidden="False" data="4" />
+    </sympin>
+    <sympin number="5" originx="200" originy="0" rotation="180" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="230" originy="0" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="K_BLUE" />
+      <text name="pindes" originx="140" originy="20" style="Default" rotation="0" justify="lowerright" flipped="False" hidden="False" data="5" />
+    </sympin>
+    <sympin number="6" originx="1200" originy="0" rotation="0" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="1170" originy="0" style="Default" rotation="0" justify="right" flipped="False" hidden="False" data="A_BLUE" />
+      <text name="pindes" originx="1260" originy="20" style="Default" rotation="0" justify="lowerleft" flipped="False" hidden="False" data="6" />
+    </sympin>
+  </symbol>
+  <component name="L1MC-RGB0028000MP0" designatorprefix="LED" height="72.83464566929" footprint="L1MCRGB0028000MP0">
+    <comppin designator="1" sympin="1" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="K_GREEN" />
+    <comppin designator="2" sympin="2" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="A_GREEN" />
+    <comppin designator="3" sympin="3" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="K_RED" />
+    <comppin designator="4" sympin="4" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="A_RED" />
+    <comppin designator="5" sympin="5" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="K_BLUE" />
+    <comppin designator="6" sympin="6" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="A_BLUE" />
+    <attached_symbol gate="1" name="L1MC-RGB0028000MP0" />
+    <pinmap designator="1" footprintpin="1" />
+    <pinmap designator="2" footprintpin="2" />
+    <pinmap designator="3" footprintpin="3" />
+    <pinmap designator="4" footprintpin="4" />
+    <pinmap designator="5" footprintpin="5" />
+    <pinmap designator="6" footprintpin="6" />
+    <text name="Datasheet" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="https://lumileds.com/wp-content/uploads/2022/03/DS388-luxeon-3528-rgb-datasheet.pdf" />
+    <text name="Description" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="LED Lighting Color LUXEON 3528 RGB Red, Green, Blue (RGB) 622nm Red, 525nm Green, 470nm Blue 6-PLCC" />
+    <text name="Mouser Part Number" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="997-L1MCRGB00280MP" />
+    <text name="Mouser Price/Stock" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="https://www.mouser.co.uk/ProductDetail/Lumileds/L1MC-RGB0028000MP0?qs=Znm5pLBrcAJSGF05jr80lQ%3D%3D" />
+    <text name="Manufacturer_Name" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="Lumileds" />
+    <text name="Manufacturer_Part_Number" originx="1250" originy="200" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="L1MC-RGB0028000MP0" />
+  </component>
+</quadcept_library>

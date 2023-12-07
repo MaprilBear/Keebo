@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP BGM220PC22HNA2R
+D Bluetooth Modules (802.15.1) Wireless bluetooth PCB module, Secure Boot w/Root of Trust and Secure Loader(RTSL), 76.8MHz, 8dB, A
+K
+F https://www.arrow.com/en/products/bgm220pc22hna2r/silicon-labs
+$ENDCMP
+#
+#End Doc Library

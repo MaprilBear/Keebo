@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'BGM220PC22HNA2R'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Silicon Labs", "BGM220PC22HNA2R" (!) = "", "BGM220PC22HNA2R", "Other", "634-BGM220PC22HNA2R", "https://www.mouser.co.uk/ProductDetail/Silicon-Labs/BGM220PC22HNA2R?qs=7MVldsJ5Uax5%252BDPfZhtOHw%3D%3D", "Bluetooth Modules (802.15.1) Wireless bluetooth PCB module, Secure Boot w/Root of Trust and Secure Loader(RTSL), 76.8MHz, 8dB, A", "https://www.arrow.com/en/products/bgm220pc22hna2r/silicon-labs", "2.4 mm"
+END_PART
+
+END.

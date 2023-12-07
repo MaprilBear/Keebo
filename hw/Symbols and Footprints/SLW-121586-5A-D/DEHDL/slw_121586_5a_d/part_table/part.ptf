@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'SLW_121586_5A_D'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "CUI Devices", "SLW-121586-5A-D" (!) = "", "SLW1215865AD", "Other", "179-SLW-121586-5A-D", "https://www.mouser.co.uk/ProductDetail/CUI-Devices/SLW-121586-5A-D?qs=1Kr7Jg1SGW%252BUgUB4TCZoyg%3D%3D", "Slide Switches 12.1 x 5.8 x 6 mm, 5 mm Raised Slide Actuator, Vertical, Through Hole", "https://www.cuidevices.com/product/resource/slw-121586-5a-d.pdf", "11.2 mm"
+END_PART
+
+END.

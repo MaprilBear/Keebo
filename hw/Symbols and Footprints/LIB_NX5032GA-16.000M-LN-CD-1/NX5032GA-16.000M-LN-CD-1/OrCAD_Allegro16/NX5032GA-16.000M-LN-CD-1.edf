@@ -1,0 +1,134 @@
+
+(EDIF
+  (rename &NX5032GA_16_000M_LN_CD_1 "NX5032GA_16_000M_LN_CD_1")
+  (EDIFVersion 2 0 0)
+  (EDIFLevel 0)
+  (keywordMap (keywordLevel 0))
+  (status
+    (written
+      (timestamp 2023 10 28 00 21 25)
+      (dataOrigin "1565631/1211395/2.50/2/4/Crystal or Oscillator")
+      (program "SamacSys ECAD Model NX5032GA_16_000M_LN_CD_1"
+        (version "2.2"))))
+  (library
+  (rename &NX5032GA_16_000M_LN_CD_1 "NX5032GA_16_000M_LN_CD_1")
+    (EDIFLevel 0)
+    (technology
+      (numberDefinition (scale 1 (e 254 -6) (unit DISTANCE)))
+      (userData GRIDRESOLUTION (integer 50 50))
+      (figureGroup DEFAULT (pathWidth 10) (textHeight 100))
+      (figureGroup PROPERTY (pathWidth 10) (textHeight 90))
+      (figureGroup PINNUMBER (pathWidth 10) (textHeight 90))
+      (figureGroup PINNAME (pathWidth 10) (textHeight 90))
+      (figureGroup COMMENT (pathWidth 10) (textHeight 90))
+      (figureGroup PIN (pathWidth 10) (textHeight 90))
+      (figureGroup GRAPHIC (pathWidth 10) (textHeight 100))
+    )
+    (cell
+      (rename &NX5032GA_16_000M_LN_CD_1 "NX5032GA_16_000M_LN_CD_1")
+      (cellType GENERIC)
+      (view
+        (rename NORMAL "Normal")
+        (viewType SCHEMATIC)
+        (interface
+          (designator "Y")
+          (property (rename PACKAGENAME "PackageName") (string "NX5032GA_16_000M_LN_CD_1"))
+          (property (rename ISHETEROGENEOUS "IsHeterogeneous") (string "False"))
+          (property (rename DEVICESINVIEW "DevicesInView") (string "1"))
+          (property (rename DEVICESINPACKAGE "DevicesInPackage") (string "1"))
+          (property (rename DEVICEDESIGNATOR "DeviceDesignator") (string "A"))
+          (property (rename DEVICENUMBERING "DeviceNumbering") (string "Alpha"))
+          (property (rename PCB_32_FOOTPRINT "PCB Footprint") (string "NX5032GA16000000MHZLNCD1"))
+          (property (rename &Mouser_Part_Number "Mouser Part Number") (string "344-NX5032GA16MLNCD1"))
+          (property (rename &Mouser_Price_Stock "Mouser Price/Stock") (string "https://www.mouser.co.uk/ProductDetail/NDK/NX5032GA-16.000M-LN-CD-1?qs=55YtniHzbhDnyNixVDBwYw%3D%3D"))
+          (property (rename &Manufacturer_Name "Manufacturer_Name") (string "NDK"))
+          (property (rename &Manufacturer_Part_Number "Manufacturer_Part_Number") (string "NX5032GA-16.000M-LN-CD-1"))
+          (property (rename &Description "Description") (string "Crystals CRYSTAL 16MHZ 8PF SMD"))
+          (property (rename &Datasheet_Link "Datasheet Link") (string "https://media.digikey.com/pdf/Data%20Sheets/NDK%20PDFs/NX5032GA.pdf"))
+          (property (rename &Height "Height") (string "1.5 mm"))
+          (property (rename &_60__32_VALUE_32__62_ "Value") (string "NX5032GA_16_000M_LN_CD_1"))
+          (property (rename VALUE "Value") (string "Value"))
+          (port
+            (rename &X1 "X1")
+            (designator "1")
+            (property (rename ORDER "Order") (string "0") (owner "OrCAD"))
+          )
+          (port
+            (rename &X2 "X2")
+            (designator "2")
+            (property (rename ORDER "Order") (string "1") (owner "OrCAD"))
+          )
+          (symbol
+            (portImplementation
+              (name &X2)
+              (keywordDisplay DESIGNATOR (display PINNUMBER))
+              (figure PIN (path (pointList (pt -100 -100) (pt 0 -100))))
+              (connectLocation (figure GRAPHIC (dot (pt -100 -100))))
+            )
+            (portImplementation
+              (name &)
+              (keywordDisplay DESIGNATOR (display PINNUMBER))
+              (figure PIN (path (pointList (pt 200 -100) (pt 300 -100))))
+              (connectLocation (figure GRAPHIC (dot (pt 300 -100))))
+            )
+            (figure GRAPHIC
+              (figureGroupOverride GRAPHIC
+                (pathWidth 10))
+              (path
+                (pointList
+                  (pt 20 0)
+                  (pt 20 -200)
+                )
+              )
+            )
+            (figure GRAPHIC
+              (figureGroupOverride GRAPHIC
+                (pathWidth 10))
+              (path
+                (pointList
+                  (pt 180 0)
+                  (pt 180 -200)
+                )
+              )
+            )
+            (figure GRAPHIC
+              (figureGroupOverride GRAPHIC
+                (pathWidth 10))
+              (path
+                (pointList
+                  (pt 60 40)
+                  (pt 60 -240)
+                  (pt 140 -240)
+                  (pt 140 40)
+                  (pt 60 40)
+                )
+              )
+            )
+            (figure GRAPHIC
+              (figureGroupOverride GRAPHIC
+                (pathWidth 10))
+              (path
+                (pointList
+                  (pt 180 -100)
+                  (pt 200 -100)
+                )
+              )
+            )
+            (figure GRAPHIC
+              (figureGroupOverride GRAPHIC
+                (pathWidth 10))
+              (path
+                (pointList
+                  (pt 20 -100)
+                  (pt 0 -100)
+                )
+              )
+            )
+            (keywordDisplay DESIGNATOR (display PROPERTY (justify 24) (orientation R0) (origin (pt 250 80))))
+            (propertyDisplay &_60__32_VALUE_32__62_ (display PROPERTY (justify 24) (orientation R0) (origin (pt 250 -20))))
+          )
+        )
+      )
+    )
+  )
+)

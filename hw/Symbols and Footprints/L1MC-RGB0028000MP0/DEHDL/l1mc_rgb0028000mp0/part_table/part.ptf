@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'L1MC_RGB0028000MP0'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Lumileds", "L1MC-RGB0028000MP0" (!) = "", "L1MCRGB0028000MP0", "Other", "997-L1MCRGB00280MP", "https://www.mouser.co.uk/ProductDetail/Lumileds/L1MC-RGB0028000MP0?qs=Znm5pLBrcAJSGF05jr80lQ%3D%3D", "LED Lighting Color LUXEON 3528 RGB Red, Green, Blue (RGB) 622nm Red, 525nm Green, 470nm Blue 6-PLCC", "https://lumileds.com/wp-content/uploads/2022/03/DS388-luxeon-3528-rgb-datasheet.pdf", "1.85 mm"
+END_PART
+
+END.

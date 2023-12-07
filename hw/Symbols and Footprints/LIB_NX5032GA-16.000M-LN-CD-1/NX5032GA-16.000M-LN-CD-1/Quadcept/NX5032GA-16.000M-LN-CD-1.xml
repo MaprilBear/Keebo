@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--/1565631/1211395/2.50/2/4/Crystal or Oscillator/-->
+<quadcept_library>
+  <setting unit="mil" />
+  <textstyle name="Default" height="47.244094488189" strokewidth="7.8740157480315" charwidth="47.244094488189" />
+  <textstyle name="Dimension" height="19.6850393700787" strokewidth="0" charwidth="19.6850393700787" />
+  <textstyle name="H127W0635TH00762" height="50" strokewidth="3" charwidth="25" />
+  <textstyle name="H15W15TH02" height="59.0551181102362" strokewidth="7.8740157480315" charwidth="59.0551181102362" />
+  <padstyle name="r240_200" surface="True" plated="False" isvia="False" nopaste="False" nomask="True" complex="False" holesize="0">
+    <padshape layer="TOP" shape="rectangle" width="78.740157480314" height="94.488188976377" />
+    <padshape layer="TOP_SOLDER_MASK" shape="rectangle" width="86.614173228345" height="102.36220472441" />
+    <padshape layer="TOP_SOLDER_PASTE" shape="rectangle" width="78.740157480314" height="94.488188976377" />
+  </padstyle>
+  <footprint name="NX5032GA16000000MHZLNCD1" originx="0" originy="0" pickpointx="0" pickpointy="0">
+    <pcbpin number="1" name="1" style="r240_200" originx="-78.740157480314" originy="0" rotation="0" />
+    <pcbpin number="2" name="2" style="r240_200" originx="78.740157480314" originy="0" rotation="0" />
+    <line layer="TOP_ASSEMBLY" originx="-98.425196850392" originy="62.992125984251" endx="98.425196850392" endy="62.992125984251" width="7.8740157480314" />
+    <line layer="TOP_ASSEMBLY" originx="98.425196850392" originy="62.992125984251" endx="98.425196850392" endy="-62.992125984251" width="7.8740157480314" />
+    <line layer="TOP_ASSEMBLY" originx="98.425196850392" originy="-62.992125984251" endx="-98.425196850392" endy="-62.992125984251" width="7.8740157480314" />
+    <line layer="TOP_ASSEMBLY" originx="-98.425196850392" originy="-62.992125984251" endx="-98.425196850392" endy="62.992125984251" width="7.8740157480314" />
+    <line layer="TOP_PLACE_BOUND" originx="-157.48031496063" originy="102.36220472441" endx="157.48031496063" endy="102.36220472441" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="157.48031496063" originy="102.36220472441" endx="157.48031496063" endy="-102.36220472441" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="157.48031496063" originy="-102.36220472441" endx="-157.48031496063" endy="-102.36220472441" width="3.9370078740157" />
+    <line layer="TOP_PLACE_BOUND" originx="-157.48031496063" originy="-102.36220472441" endx="-157.48031496063" endy="102.36220472441" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="-98.425196850392" originy="62.992125984251" endx="98.425196850392" endy="62.992125984251" width="3.9370078740157" />
+    <line layer="TOP_SILKSCREEN" originx="-98.425196850392" originy="-62.992125984251" endx="98.425196850392" endy="-62.992125984251" width="3.9370078740157" />
+  </footprint>
+  <symbol name="NX5032GA-16.000M-LN-CD-1" originx="0" originy="0">
+    <line originx="120" originy="100" endx="120" endy="-100" width="0" />
+    <line originx="280" originy="100" endx="280" endy="-100" width="0" />
+    <line originx="160" originy="140" endx="160" endy="-140" width="0" />
+    <line originx="240" originy="-140" endx="160" endy="-140" width="0" />
+    <line originx="240" originy="-140" endx="240" endy="140" width="0" />
+    <line originx="160" originy="140" endx="240" endy="140" width="0" />
+    <line originx="280" originy="0" endx="300" endy="0" width="0" />
+    <line originx="120" originy="0" endx="100" endy="0" width="0" />
+    <sympin number="2" originx="100" originy="0" rotation="180" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="140" originy="10" style="Default" rotation="0" justify="left" flipped="False" hidden="True" data="X2" />
+      <text name="pindes" originx="60" originy="10" style="Default" rotation="0" justify="lowerright" flipped="False" hidden="False" data="2" />
+    </sympin>
+    <sympin number="2" originx="300" originy="0" rotation="0" length="100" width="7.8740157480315" flipped="False">
+      <text name="pinname" originx="260" originy="10" style="Default" rotation="0" justify="right" flipped="False" hidden="True" data="" />
+      <text name="pindes" originx="340" originy="10" style="Default" rotation="0" justify="lowerleft" flipped="False" hidden="False" data="" />
+    </sympin>
+  </symbol>
+  <component name="NX5032GA-16.000M-LN-CD-1" designatorprefix="Y" height="59.055118110235" footprint="NX5032GA16000000MHZLNCD1">
+    <comppin designator="1" sympin="1" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="X1" />
+    <comppin designator="2" sympin="2" pinswap="0" gateswap="0" gate="1" group="1" side="" type="Any" name="X2" />
+    <attached_symbol gate="1" name="NX5032GA-16.000M-LN-CD-1" />
+    <pinmap designator="1" footprintpin="1" />
+    <pinmap designator="2" footprintpin="2" />
+    <text name="Datasheet" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="https://media.digikey.com/pdf/Data Sheets/NDK PDFs/NX5032GA.pdf" />
+    <text name="Description" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="Crystals CRYSTAL 16MHZ 8PF SMD" />
+    <text name="Mouser Part Number" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="344-NX5032GA16MLNCD1" />
+    <text name="Mouser Price/Stock" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="https://www.mouser.co.uk/ProductDetail/NDK/NX5032GA-16.000M-LN-CD-1?qs=55YtniHzbhDnyNixVDBwYw%3D%3D" />
+    <text name="Manufacturer_Name" originx="0" originy="0" style="Default" rotation="0" justify="" flipped="False" hidden="True" data="NDK" />
+    <text name="Manufacturer_Part_Number" originx="350" originy="150" style="Default" rotation="0" justify="left" flipped="False" hidden="False" data="NX5032GA-16.000M-LN-CD-1" />
+  </component>
+</quadcept_library>

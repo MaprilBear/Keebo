@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "L1MC-RGB0028000MP0"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2023-05-16-05:14:29)
+    (mountForm default
+        (footprintRef "L1MCRGB0028000MP0")
+        (spec "System")
+    )
+)
