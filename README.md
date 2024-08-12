@@ -1,15 +1,15 @@
-# Minkboard - WIP
-Successor to the [Stoatboard](https://github.com/MaprilBear/Stoatboard)
+# Keebo - WIP
+Successor/65% version of the [Keebi](https://github.com/MaprilBear/Keebi)
 
-## Changes from the Stoatboard
+## Changes from the Keebi
 - Slighty larger IPS display
 - "63%" Layout
   - 65% but without INS/DEL, HOME/END, and PG UP/DN buttons
-- No longer hotswap
 - Per-key RGB Lighting
+- Volume Knob
 - Improved Firmware
   - Programmable Macros
   - Media and Volume Controls
 
 ## Credits
-Iterated upon from the [Stoatboard](https://github.com/MaprilBear/Stoatboard) by April Douglas
+Iterated upon from the [Keebi](https://github.com/MaprilBear/Keebi), a student project for UT Austin's ECE 445L class 
