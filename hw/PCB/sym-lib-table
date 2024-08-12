@@ -11,4 +11,6 @@
   (lib (name "TPS2113ADRBR")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/LIB_TPS2113ADRBR/TPS2113ADRBR/KiCad/TPS2113ADRBR.kicad_sym")(options "")(descr ""))
   (lib (name "BGM220PC22HNA2R")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/LIB_BGM220PC22HNA2R/BGM220PC22HNA2R/KiCad/BGM220PC22HNA2R.kicad_sym")(options "")(descr ""))
   (lib (name "SLW-121586-5A-D")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/SLW-121586-5A-D/KiCad/SLW-121586-5A-D.kicad_sym")(options "")(descr ""))
+  (lib (name "mikroBUS")(type "Legacy")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/kicad-mikroBUS-master/library/mikroBUS.lib")(options "")(descr ""))
+  (lib (name "STZio")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/STZio.kicad_sym")(options "")(descr ""))
 )

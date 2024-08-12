@@ -17,4 +17,6 @@
   (lib (name "KiCad")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/L1MC-RGB0028000MP0/KiCad")(options "")(descr ""))
   (lib (name "Keebio-Parts.pretty-master")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/Keebio-Parts.pretty-master")(options "")(descr ""))
   (lib (name "misc")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/misc")(options "")(descr ""))
+  (lib (name "mikroBUS")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/kicad-mikroBUS-master/modules/mikroBUS.pretty")(options "")(descr ""))
+  (lib (name "STZio")(type "KiCad")(uri "G:/Repositories/Minkboard/hw/Symbols and Footprints/STZio.pretty")(options "")(descr ""))
 )

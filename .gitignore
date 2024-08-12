@@ -182,3 +182,7 @@ hw/KeyboardPCB/KeyboardPCB-backups/
 sw/.vscode/
 
 *.lck
+
+hw/PCB/PCB-backups/
+
+hw/PCB/production/
