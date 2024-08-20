@@ -186,3 +186,5 @@ sw/.vscode/
 hw/PCB/PCB-backups/
 
 hw/PCB/production/
+
+sw/.extSettings

@@ -1,36 +1,74 @@
-USB HID Keyboard Device
+/**
+  @page GPIO_IOToggle GPIO IO Toggle example
+  
+  @verbatim
+  ******************************************************************************
+  * @file    GPIO/GPIO_IOToggle/readme.txt 
+  * @author  MCD Application Team
+  * @brief   Description of the GPIO IO Toggle example.
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2019 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  @endverbatim
 
-This example turns the EK-TM4C123GXL LaunchPad into a USB keyboard
-supporting the Human Interface Device class.  When either the SW1/SW2
-push button is pressed, a sequence of key presses is simulated to type a
-string.  Care should be taken to ensure that the active window can safely
-receive the text; enter is not pressed at any point so no actions are
-attempted by the host if a terminal window is used (for example).  The
-status LED is used to indicate the current Caps Lock state and is updated
-in response to any other keyboard attached to the same USB host system.
+@par Example Description
 
-The device implemented by this application also supports USB remote wakeup
-allowing it to request the host to reactivate a suspended bus.  If the bus
-is suspended (as indicated on the application display), pressing the
-push button will request a remote wakeup assuming the host has not
-specifically disabled such requests.
+How to configure and use GPIOs through the HAL API.
 
--------------------------------------------------------------------------------
+PC.07 IO (configured in output pushpull mode) toggles in a forever loop.
+On NUCLEO-L552ZE-Q C-02 board this IO is connected to LED1.
 
-Copyright (c) 2011-2020 Texas Instruments Incorporated.  All rights reserved.
-Software License Agreement
+In this example, HCLK is configured at 110 MHz.
 
-Texas Instruments (TI) is supplying this software for use solely and
-exclusively on TI's microcontroller products. The software is owned by
-TI and/or its suppliers, and is protected under applicable copyright
-laws. You may not combine this software with "viral" open-source
-software in order to form a larger program.
+@note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
+      based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
+      a peripheral ISR process, then the SysTick interrupt must have higher priority (numerically lower)
+      than the peripheral interrupt. Otherwise the caller ISR process will be blocked.
+      To change the SysTick interrupt priority you have to use HAL_NVIC_SetPriority() function.
 
-THIS SOFTWARE IS PROVIDED "AS IS" AND WITH ALL FAULTS.
-NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT
-NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE. TI SHALL NOT, UNDER ANY
-CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES, FOR ANY REASON WHATSOEVER.
+@note The example needs to ensure that the SysTick time base is always set to 1 millisecond
+to have correct HAL operation.
 
-This is part of revision 2.2.0.295 of the EK-TM4C123GXL Firmware Package.
+@note The instruction cache (ICACHE) must be enabled by software to get a 0 wait-state execution
+      from Flash memory and external memories, and reach the maximum performance.
+
+@par Keywords
+
+System, GPIO, Input, Output, Alternate function, Push-pull, Toggle
+
+@par Directory contents 
+
+  - GPIO/GPIO_IOToggle/Inc/stm32l5xx_hal_conf.h    HAL configuration file
+  - GPIO/GPIO_IOToggle/Inc/stm32l5xx_it.h          Interrupt handlers header file
+  - GPIO/GPIO_IOToggle/Inc/main.h                  Header for main.c module  
+  - GPIO/GPIO_IOToggle/Src/stm32l5xx_it.c          Interrupt handlers
+  - GPIO/GPIO_IOToggle/Src/stm32l5xx_hal_msp.c     MSP initializations and de-initializations
+  - GPIO/GPIO_IOToggle/Src/main.c                  Main program
+  - GPIO/GPIO_IOToggle/Src/system_stm32l5xx.c      STM32L5xx system source file
+
+
+@par Hardware and Software environment
+
+  - This example runs on STM32L552ZETxQ devices.
+    
+  - This example has been tested with NUCLEO-L552ZE-Q C-02 board and can be
+    easily tailored to any other supported device and development board.
+
+
+@par How to use it ? 
+
+In order to make the program work, you must do the following :
+ - Open your preferred toolchain
+ - Rebuild all files and load your image into target memory
+ - Run the example
+
+
+ */
