@@ -188,3 +188,9 @@ hw/PCB/PCB-backups/
 hw/PCB/production/
 
 sw/.extSettings
+
+sw/.metadata/
+
+sw/Keyswitch Matrix Test/.vscode/
+
+sw/Keyswitch Matrix Test/.extSettings
