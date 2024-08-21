@@ -496,7 +496,7 @@ int main(void) {
 
        USBD_HID_SendReport(device, &keyboardHID, sizeof(struct keyboardHID_t));
 
-       HAL_Delay(5);
+       HAL_Delay(1);
      }
   /* USER CODE END 3 */
 }
