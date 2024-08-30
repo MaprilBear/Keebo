@@ -1,0 +1,102 @@
+Configuration	Keyboard
+STM32CubeMX 	6.12.0
+Date	08/29/2024
+MCU	STM32L552ZETxQ
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+LPUART1	Asynchronous	LPUART1_RX	PG8
+LPUART1	Asynchronous	LPUART1_TX	PG7
+PWR	Dead Battery Signals disabled	PWR_VS_DBSignals	VP_PWR_VS_DBSignals
+PWR	Privilege attributes	PWR_VS_SECSignals	VP_PWR_VS_SECSignals
+RCC	CRS SYNC Source USB	RCC_USB	VP_RCC_USB
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM2	PWM Generation CH4	TIM2_CH4	PA3
+USB	Device (FS)	USB_DM	PA11
+USB	Device (FS)	USB_DP	PA12
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+1	PE2	GPIO_Output	ROW3
+2	PE3	GPIO_Output	COLMUXC
+3	PE4	GPIO_Output	ROW2
+4	PE5	GPIO_Output	COLMUXA
+5	PE6	GPIO_Output	COLMUXB
+15	PF5	GPIO_Input	COLOUTA
+26	PC0	GPIO_Output	ROW1
+36	PA3	TIM2_CH4	
+54	PG1	GPIO_Input	COLOUTB
+92	PG7	LPUART1_TX	
+93	PG8	LPUART1_RX	
+97	PC7	GPIO_Output	
+103	PA11	USB_DM	
+104	PA12	USB_DP	
+119	PD5	GPIO_Output	ROW4
+122	PD6	GPIO_Output	ROW0
+135	PB6	GPIO_Output	LOGIC_TRANS_EN
+138	PB8	GPIO_Output	
+139	PB9	GPIO_Output	
+PERIPHERALS	MODES	FUNCTIONS	PINS
+LPUART1	Asynchronous	LPUART1_RX	PG8
+LPUART1	Asynchronous	LPUART1_TX	PG7
+PWR	Dead Battery Signals disabled	PWR_VS_DBSignals	VP_PWR_VS_DBSignals
+PWR	Privilege attributes	PWR_VS_SECSignals	VP_PWR_VS_SECSignals
+RCC	CRS SYNC Source USB	RCC_USB	VP_RCC_USB
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM2	PWM Generation CH4	TIM2_CH4	PA3
+USB	Device (FS)	USB_DM	PA11
+USB	Device (FS)	USB_DP	PA12
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+1	PE2	GPIO_Output	ROW3
+2	PE3	GPIO_Output	COLMUXC
+3	PE4	GPIO_Output	ROW2
+4	PE5	GPIO_Output	COLMUXA
+5	PE6	GPIO_Output	COLMUXB
+15	PF5	GPIO_Input	COLOUTA
+26	PC0	GPIO_Output	ROW1
+36	PA3	TIM2_CH4	
+54	PG1	GPIO_Input	COLOUTB
+92	PG7	LPUART1_TX	
+93	PG8	LPUART1_RX	
+97	PC7	GPIO_Output	
+103	PA11	USB_DM	
+104	PA12	USB_DP	
+119	PD5	GPIO_Output	ROW4
+122	PD6	GPIO_Output	ROW0
+135	PB6	GPIO_Output	LOGIC_TRANS_EN
+138	PB8	GPIO_Output	
+139	PB9	GPIO_Output	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : Keyboard
+Project Folder : G:\Repositories\Keebo\sw\Keyboard
+Toolchain / IDE : STM32CubeIDE
+Firmware Package Name and Version : STM32Cube FW_L5 V1.5.1
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+

@@ -1,4 +1,4 @@
-22586719726611451
+22587226095543121
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -87716,6 +87716,13 @@ Logo WEEE
 0
 0
 0
+TLC5954RTQR
+QFN50P800X800X100-57N-D
+RTQ0056G
+Integrated Circuit
+0
+57
+57
 TerminalBlock
 TerminalBlock_Altech_AK300-2_P5.00mm
 Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
@@ -93330,27 +93337,6 @@ varistor
 0
 2
 2
-footprints
-VFQFN68-8x8mm
-
-STM32WB55RGV6 
-0
-69
-69
-footprints
-VFQFN68-8x8mm-L
-
-STM32WB55RGV6 
-0
-69
-69
-footprints
-VFQFN68-8x8mm-M
-
-STM32WB55RGV6 
-0
-69
-69
 mikroBUS
 MIKROBUS_HOST_CONN
 
