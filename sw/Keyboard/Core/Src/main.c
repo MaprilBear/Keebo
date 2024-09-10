@@ -165,7 +165,9 @@ typedef union
 #define HID_KEYB_USAGE_F11      0x44
 #define HID_KEYB_USAGE_F12      0x45
 #define HID_KEYB_USAGE_SCROLLOCK   0x47
+#define HID_KEYB_USAGE_INSERT	0x49
 #define HID_KEYB_USAGE_PAGE_UP  0x4B
+#define HID_KEYB_USAGE_DELETE 	0x4C
 #define HID_KEYB_USAGE_PAGE_DOWN   0x4E
 #define HID_KEYB_USAGE_RIGHT_ARROW 0x4F
 #define HID_KEYB_USAGE_LEFT_ARROW 0x50
@@ -213,6 +215,7 @@ typedef union
 #define VOL_DN 0xEE
 #define APP_A 0xEF
 #define APP_B 0xF0
+#define FUNC_KEY 0xF1
 
 /* USER CODE END PD */
 
@@ -238,12 +241,24 @@ DMA_HandleTypeDef hdma_tim3_ch3;
 
 struct keyboardHID_t keyboardHID = {0,0,0,0,0,0,0,0};
 
-uint8_t KeyboardMatrix[5][14] = {
-    {HID_KEYB_USAGE_ESCAPE,  HID_KEYB_USAGE_1, HID_KEYB_USAGE_2, HID_KEYB_USAGE_3, HID_KEYB_USAGE_4, HID_KEYB_USAGE_5, HID_KEYB_USAGE_6, HID_KEYB_USAGE_7, HID_KEYB_USAGE_8, HID_KEYB_USAGE_9, HID_KEYB_USAGE_0, HID_KEYB_USAGE_MINUS, HID_KEYB_USAGE_EQUAL, HID_KEYB_USAGE_BACKSPACE},
+uint8_t KeyboardMatrix[3][5][14] = {
+	{{HID_KEYB_USAGE_ESCAPE,  HID_KEYB_USAGE_1, HID_KEYB_USAGE_2, HID_KEYB_USAGE_3, HID_KEYB_USAGE_4, HID_KEYB_USAGE_5, HID_KEYB_USAGE_6, HID_KEYB_USAGE_7, HID_KEYB_USAGE_8, HID_KEYB_USAGE_9, HID_KEYB_USAGE_0, HID_KEYB_USAGE_MINUS, HID_KEYB_USAGE_EQUAL, HID_KEYB_USAGE_BACKSPACE},
     {HID_KEYB_USAGE_TAB, HID_KEYB_USAGE_Q, HID_KEYB_USAGE_W, HID_KEYB_USAGE_E, HID_KEYB_USAGE_R, HID_KEYB_USAGE_T, HID_KEYB_USAGE_Y, HID_KEYB_USAGE_U, HID_KEYB_USAGE_I, HID_KEYB_USAGE_O, HID_KEYB_USAGE_P, HID_KEYB_USAGE_LBRACKET, HID_KEYB_USAGE_RBRACKET, HID_KEYB_USAGE_BSLASH},
     {HID_KEYB_USAGE_CAPSLOCK, HID_KEYB_USAGE_A, HID_KEYB_USAGE_S, HID_KEYB_USAGE_D, HID_KEYB_USAGE_F, HID_KEYB_USAGE_G, HID_KEYB_USAGE_H, HID_KEYB_USAGE_J, HID_KEYB_USAGE_K, HID_KEYB_USAGE_L, HID_KEYB_USAGE_SEMICOLON, HID_KEYB_USAGE_FQUOTE, HID_KEYB_USAGE_ENTER, HID_KEYB_USAGE_UP_ARROW},
     {LEFT_SHIFT, HID_KEYB_USAGE_Z, HID_KEYB_USAGE_X, HID_KEYB_USAGE_C, HID_KEYB_USAGE_V, HID_KEYB_USAGE_B, HID_KEYB_USAGE_N, HID_KEYB_USAGE_M, HID_KEYB_USAGE_COMMA, HID_KEYB_USAGE_PERIOD, HID_KEYB_USAGE_FSLASH, RIGHT_SHIFT, HID_KEYB_USAGE_LEFT_ARROW, HID_KEYB_USAGE_DOWN_ARROW},
-    {LEFT_CTRL, LEFT_GUI, LEFT_ALT, 0, 0, HID_KEYB_USAGE_SPACE, 0, 0, 0, RIGHT_ALT, 0, HID_KEYB_RIGHT_GUI, RIGHT_CTRL, HID_KEYB_USAGE_RIGHT_ARROW}
+    {LEFT_CTRL, LEFT_GUI, LEFT_ALT, 0, 0, HID_KEYB_USAGE_SPACE, 0, 0, 0, RIGHT_ALT, FUNC_KEY, HID_KEYB_RIGHT_GUI, RIGHT_CTRL, HID_KEYB_USAGE_RIGHT_ARROW}},
+
+	{{HID_KEYB_USAGE_BQUOTE,  HID_KEYB_USAGE_1, HID_KEYB_USAGE_2, HID_KEYB_USAGE_3, HID_KEYB_USAGE_4, HID_KEYB_USAGE_5, HID_KEYB_USAGE_6, HID_KEYB_USAGE_7, HID_KEYB_USAGE_8, HID_KEYB_USAGE_9, HID_KEYB_USAGE_0, HID_KEYB_USAGE_MINUS, HID_KEYB_USAGE_EQUAL, HID_KEYB_USAGE_DELETE},
+	{HID_KEYB_USAGE_TAB, HID_KEYB_USAGE_Q, HID_KEYB_USAGE_W, HID_KEYB_USAGE_E, HID_KEYB_USAGE_R, HID_KEYB_USAGE_T, HID_KEYB_USAGE_Y, HID_KEYB_USAGE_U, HID_KEYB_USAGE_I, HID_KEYB_USAGE_O, HID_KEYB_USAGE_P, HID_KEYB_USAGE_LBRACKET, HID_KEYB_USAGE_RBRACKET, HID_KEYB_USAGE_BSLASH},
+	{HID_KEYB_USAGE_CAPSLOCK, HID_KEYB_USAGE_A, HID_KEYB_USAGE_S, HID_KEYB_USAGE_D, HID_KEYB_USAGE_F, HID_KEYB_USAGE_G, HID_KEYB_USAGE_H, HID_KEYB_USAGE_J, HID_KEYB_USAGE_K, HID_KEYB_USAGE_L, HID_KEYB_USAGE_SEMICOLON, HID_KEYB_USAGE_FQUOTE, HID_KEYB_USAGE_ENTER, HID_KEYB_USAGE_UP_ARROW},
+	{LEFT_SHIFT, HID_KEYB_USAGE_Z, HID_KEYB_USAGE_X, HID_KEYB_USAGE_C, HID_KEYB_USAGE_V, HID_KEYB_USAGE_B, HID_KEYB_USAGE_N, HID_KEYB_USAGE_M, HID_KEYB_USAGE_COMMA, HID_KEYB_USAGE_PERIOD, HID_KEYB_USAGE_FSLASH, RIGHT_SHIFT, HID_KEYB_USAGE_LEFT_ARROW, HID_KEYB_USAGE_DOWN_ARROW},
+	{LEFT_CTRL, LEFT_GUI, LEFT_ALT, 0, 0, HID_KEYB_USAGE_SPACE, 0, 0, 0, RIGHT_ALT, FUNC_KEY, HID_KEYB_RIGHT_GUI, RIGHT_CTRL, HID_KEYB_USAGE_RIGHT_ARROW}},
+
+	{{HID_KEYB_USAGE_ESCAPE,  HID_KEYB_USAGE_F1, HID_KEYB_USAGE_F2, HID_KEYB_USAGE_F3, HID_KEYB_USAGE_F4, HID_KEYB_USAGE_F5, HID_KEYB_USAGE_F6, HID_KEYB_USAGE_F7, HID_KEYB_USAGE_F8, HID_KEYB_USAGE_F9, HID_KEYB_USAGE_F10, HID_KEYB_USAGE_F11, HID_KEYB_USAGE_F12, HID_KEYB_USAGE_BACKSPACE},
+	{HID_KEYB_USAGE_TAB, HID_KEYB_USAGE_Q, HID_KEYB_USAGE_W, HID_KEYB_USAGE_E, HID_KEYB_USAGE_R, HID_KEYB_USAGE_T, HID_KEYB_USAGE_Y, HID_KEYB_USAGE_U, HID_KEYB_USAGE_I, HID_KEYB_USAGE_O, HID_KEYB_USAGE_P, HID_KEYB_USAGE_LBRACKET, HID_KEYB_USAGE_RBRACKET, HID_KEYB_USAGE_BSLASH},
+	{HID_KEYB_USAGE_CAPSLOCK, HID_KEYB_USAGE_A, HID_KEYB_USAGE_S, HID_KEYB_USAGE_D, HID_KEYB_USAGE_F, HID_KEYB_USAGE_G, HID_KEYB_USAGE_H, HID_KEYB_USAGE_J, HID_KEYB_USAGE_K, HID_KEYB_USAGE_L, HID_KEYB_USAGE_SEMICOLON, HID_KEYB_USAGE_FQUOTE, HID_KEYB_USAGE_ENTER, HID_KEYB_USAGE_UP_ARROW},
+	{LEFT_SHIFT, HID_KEYB_USAGE_Z, HID_KEYB_USAGE_X, HID_KEYB_USAGE_C, HID_KEYB_USAGE_V, HID_KEYB_USAGE_B, HID_KEYB_USAGE_N, HID_KEYB_USAGE_M, HID_KEYB_USAGE_COMMA, HID_KEYB_USAGE_PERIOD, HID_KEYB_USAGE_FSLASH, RIGHT_SHIFT, HID_KEYB_USAGE_LEFT_ARROW, HID_KEYB_USAGE_DOWN_ARROW},
+	{LEFT_CTRL, LEFT_GUI, LEFT_ALT, 0, 0, HID_KEYB_USAGE_SPACE, 0, 0, 0, RIGHT_ALT, FUNC_KEY, HID_KEYB_RIGHT_GUI, RIGHT_CTRL, HID_KEYB_USAGE_RIGHT_ARROW}},
   };
 
 uint8_t matrix[5][14][6] = {
@@ -253,6 +268,8 @@ uint8_t matrix[5][14][6] = {
 		{"LShift","Z","X","C","V","B","N","M",",",".","/","RShift","Left","Down"},
 		{"LCtrl","Win","LAlt","", "", " ","","","", "RAlt","Fn","Menu","RCtrl","Right"},
 };
+
+uint8_t currentLayer = 0;
 
 /* USER CODE END PV */
 
@@ -332,10 +349,12 @@ void PressKey(uint8_t c)
   switch (c)
   {
   case LEFT_SHIFT:
-    keyboardHID.modifiers |= HID_KEYB_LEFT_SHIFT;
+	keyboardHID.modifiers |= HID_KEYB_LEFT_SHIFT;
+	currentLayer = 1;
     break;
   case RIGHT_SHIFT:
-	  keyboardHID.modifiers |= HID_KEYB_RIGHT_SHIFT;
+	keyboardHID.modifiers |= HID_KEYB_RIGHT_SHIFT;
+	currentLayer = 1;
     break;
   case LEFT_CTRL:
 	  keyboardHID.modifiers |= HID_KEYB_LEFT_CTRL;
@@ -361,6 +380,9 @@ void PressKey(uint8_t c)
   case BLUETOOTH:
     //ToggleBluetooth();
     break;
+  case FUNC_KEY:
+	  currentLayer = 2;
+	  return;
   case APP_A:
   case APP_B:
     return;
@@ -378,9 +400,15 @@ void ReleaseKey(uint8_t c)
   {
   case LEFT_SHIFT:
 	  keyboardHID.modifiers &= ~HID_KEYB_LEFT_SHIFT;
+	  if (!(keyboardHID.modifiers & HID_KEYB_RIGHT_SHIFT)){
+	      	currentLayer = 0;
+	  }
     break;
   case RIGHT_SHIFT:
 	  keyboardHID.modifiers &= ~HID_KEYB_RIGHT_SHIFT;
+	  if (!(keyboardHID.modifiers & HID_KEYB_LEFT_SHIFT)){
+			currentLayer = 0;
+	  }
     break;
   case LEFT_CTRL:
 	  keyboardHID.modifiers &= ~HID_KEYB_LEFT_CTRL;
@@ -400,6 +428,9 @@ void ReleaseKey(uint8_t c)
   case RIGHT_GUI:
 	  keyboardHID.modifiers &= ~HID_KEYB_RIGHT_GUI;
     break;
+  case FUNC_KEY:
+  	  currentLayer = 0;
+  	  return;
   case APP_A:
   case APP_B:
     return;
@@ -467,7 +498,7 @@ int main(void)
 
 
    	   k = 0;
-     stepSize = 4;
+     stepSize = 3;
 
     while (1){
    	uint8_t wrote = 0;
@@ -516,19 +547,19 @@ int main(void)
 
 			// read from muxes
 			if (colA && lastState[row][col + 0] == 1 && lastLastState[row][col + 0] == 0){
-				PressKey(KeyboardMatrix[row][col + 0]);
+				PressKey(KeyboardMatrix[currentLayer][row][col + 0]);
 				//HAL_UART_Transmit(&hlpuart1, matrix[row][col + 0], sizeof(matrix[row][col + 0]), 100);
 				//HAL_UART_Transmit(&hlpuart1, " ", sizeof(" "), 100)
 			} else if (!colA && lastState[row][col + 0] == 0 && lastLastState[row][col + 0] == 1){
-				ReleaseKey(KeyboardMatrix[row][col + 0]);
+				ReleaseKey(KeyboardMatrix[currentLayer][row][col + 0]);
 			}
 
 			if (colB && lastState[row][col + 1] == 1 && lastLastState[row][col + 1] == 0){
-				PressKey(KeyboardMatrix[row][col + 1]);
+				PressKey(KeyboardMatrix[currentLayer][row][col + 1]);
 				//HAL_UART_Transmit(&hlpuart1, matrix[row][col + 1], sizeof(matrix[row][col + 1]), 100);
 				//HAL_UART_Transmit(&hlpuart1, " ", sizeof(" "), 100);
 			} else if (!colB && lastState[row][col + 1] == 0 && lastLastState[row][col + 1] == 1){
-				ReleaseKey(KeyboardMatrix[row][col + 1]);
+				ReleaseKey(KeyboardMatrix[currentLayer][row][col + 1]);
 			}
 
 			lastLastState[row][col + 0] = lastState[row][col + 0];
@@ -539,12 +570,10 @@ int main(void)
 	   }
 
 	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
-	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
 
 	   USBD_HID_SendReport(device, &keyboardHID, sizeof(struct keyboardHID_t));
 
-	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
-
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
 	   // LEDs
 
 	   k = (k + stepSize) % 765;
@@ -620,9 +649,11 @@ int main(void)
 
 	      	 }
 
+	  	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
 
 
-	   HAL_Delay(10);
+
+	   HAL_Delay(5);
 
     /* USER CODE END WHILE */
 
