@@ -65,6 +65,8 @@ typedef union
 #define NUM_PIXELS 14
 #define DMA_BUFF_SIZE (NUM_PIXELS * 32) + 1
 
+#define SLEEP_DELAY 30000
+
 //*****************************************************************************
 //
 // HID Keyboard LED definitions as used in the first byte of the output report
@@ -227,6 +229,7 @@ typedef union
 /* Private variables ---------------------------------------------------------*/
 
 UART_HandleTypeDef hlpuart1;
+UART_HandleTypeDef huart3;
 
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
@@ -238,6 +241,8 @@ DMA_HandleTypeDef hdma_tim3_ch3;
 
 /* USER CODE BEGIN PV */
 
+uint8_t High_Perf_Mode = 0;
+
 
 struct keyboardHID_t keyboardHID = {0,0,0,0,0,0,0,0};
 
@@ -248,13 +253,13 @@ uint8_t KeyboardMatrix[3][5][14] = {
     {LEFT_SHIFT, HID_KEYB_USAGE_Z, HID_KEYB_USAGE_X, HID_KEYB_USAGE_C, HID_KEYB_USAGE_V, HID_KEYB_USAGE_B, HID_KEYB_USAGE_N, HID_KEYB_USAGE_M, HID_KEYB_USAGE_COMMA, HID_KEYB_USAGE_PERIOD, HID_KEYB_USAGE_FSLASH, RIGHT_SHIFT, HID_KEYB_USAGE_LEFT_ARROW, HID_KEYB_USAGE_DOWN_ARROW},
     {LEFT_CTRL, LEFT_GUI, LEFT_ALT, 0, 0, HID_KEYB_USAGE_SPACE, 0, 0, 0, RIGHT_ALT, FUNC_KEY, HID_KEYB_RIGHT_GUI, RIGHT_CTRL, HID_KEYB_USAGE_RIGHT_ARROW}},
 
-	{{HID_KEYB_USAGE_BQUOTE,  HID_KEYB_USAGE_1, HID_KEYB_USAGE_2, HID_KEYB_USAGE_3, HID_KEYB_USAGE_4, HID_KEYB_USAGE_5, HID_KEYB_USAGE_6, HID_KEYB_USAGE_7, HID_KEYB_USAGE_8, HID_KEYB_USAGE_9, HID_KEYB_USAGE_0, HID_KEYB_USAGE_MINUS, HID_KEYB_USAGE_EQUAL, HID_KEYB_USAGE_DELETE},
+	{{HID_KEYB_USAGE_BQUOTE,  HID_KEYB_USAGE_1, HID_KEYB_USAGE_2, HID_KEYB_USAGE_3, HID_KEYB_USAGE_4, HID_KEYB_USAGE_5, HID_KEYB_USAGE_6, HID_KEYB_USAGE_7, HID_KEYB_USAGE_8, HID_KEYB_USAGE_9, HID_KEYB_USAGE_0, HID_KEYB_USAGE_MINUS, HID_KEYB_USAGE_EQUAL, HID_KEYB_USAGE_BACKSPACE},
 	{HID_KEYB_USAGE_TAB, HID_KEYB_USAGE_Q, HID_KEYB_USAGE_W, HID_KEYB_USAGE_E, HID_KEYB_USAGE_R, HID_KEYB_USAGE_T, HID_KEYB_USAGE_Y, HID_KEYB_USAGE_U, HID_KEYB_USAGE_I, HID_KEYB_USAGE_O, HID_KEYB_USAGE_P, HID_KEYB_USAGE_LBRACKET, HID_KEYB_USAGE_RBRACKET, HID_KEYB_USAGE_BSLASH},
 	{HID_KEYB_USAGE_CAPSLOCK, HID_KEYB_USAGE_A, HID_KEYB_USAGE_S, HID_KEYB_USAGE_D, HID_KEYB_USAGE_F, HID_KEYB_USAGE_G, HID_KEYB_USAGE_H, HID_KEYB_USAGE_J, HID_KEYB_USAGE_K, HID_KEYB_USAGE_L, HID_KEYB_USAGE_SEMICOLON, HID_KEYB_USAGE_FQUOTE, HID_KEYB_USAGE_ENTER, HID_KEYB_USAGE_UP_ARROW},
 	{LEFT_SHIFT, HID_KEYB_USAGE_Z, HID_KEYB_USAGE_X, HID_KEYB_USAGE_C, HID_KEYB_USAGE_V, HID_KEYB_USAGE_B, HID_KEYB_USAGE_N, HID_KEYB_USAGE_M, HID_KEYB_USAGE_COMMA, HID_KEYB_USAGE_PERIOD, HID_KEYB_USAGE_FSLASH, RIGHT_SHIFT, HID_KEYB_USAGE_LEFT_ARROW, HID_KEYB_USAGE_DOWN_ARROW},
 	{LEFT_CTRL, LEFT_GUI, LEFT_ALT, 0, 0, HID_KEYB_USAGE_SPACE, 0, 0, 0, RIGHT_ALT, FUNC_KEY, HID_KEYB_RIGHT_GUI, RIGHT_CTRL, HID_KEYB_USAGE_RIGHT_ARROW}},
 
-	{{HID_KEYB_USAGE_ESCAPE,  HID_KEYB_USAGE_F1, HID_KEYB_USAGE_F2, HID_KEYB_USAGE_F3, HID_KEYB_USAGE_F4, HID_KEYB_USAGE_F5, HID_KEYB_USAGE_F6, HID_KEYB_USAGE_F7, HID_KEYB_USAGE_F8, HID_KEYB_USAGE_F9, HID_KEYB_USAGE_F10, HID_KEYB_USAGE_F11, HID_KEYB_USAGE_F12, HID_KEYB_USAGE_BACKSPACE},
+	{{HID_KEYB_USAGE_BQUOTE,  HID_KEYB_USAGE_F1, HID_KEYB_USAGE_F2, HID_KEYB_USAGE_F3, HID_KEYB_USAGE_F4, HID_KEYB_USAGE_F5, HID_KEYB_USAGE_F6, HID_KEYB_USAGE_F7, HID_KEYB_USAGE_F8, HID_KEYB_USAGE_F9, HID_KEYB_USAGE_F10, HID_KEYB_USAGE_F11, HID_KEYB_USAGE_F12, HID_KEYB_USAGE_DELETE},
 	{HID_KEYB_USAGE_TAB, HID_KEYB_USAGE_Q, HID_KEYB_USAGE_W, HID_KEYB_USAGE_E, HID_KEYB_USAGE_R, HID_KEYB_USAGE_T, HID_KEYB_USAGE_Y, HID_KEYB_USAGE_U, HID_KEYB_USAGE_I, HID_KEYB_USAGE_O, HID_KEYB_USAGE_P, HID_KEYB_USAGE_LBRACKET, HID_KEYB_USAGE_RBRACKET, HID_KEYB_USAGE_BSLASH},
 	{HID_KEYB_USAGE_CAPSLOCK, HID_KEYB_USAGE_A, HID_KEYB_USAGE_S, HID_KEYB_USAGE_D, HID_KEYB_USAGE_F, HID_KEYB_USAGE_G, HID_KEYB_USAGE_H, HID_KEYB_USAGE_J, HID_KEYB_USAGE_K, HID_KEYB_USAGE_L, HID_KEYB_USAGE_SEMICOLON, HID_KEYB_USAGE_FQUOTE, HID_KEYB_USAGE_ENTER, HID_KEYB_USAGE_UP_ARROW},
 	{LEFT_SHIFT, HID_KEYB_USAGE_Z, HID_KEYB_USAGE_X, HID_KEYB_USAGE_C, HID_KEYB_USAGE_V, HID_KEYB_USAGE_B, HID_KEYB_USAGE_N, HID_KEYB_USAGE_M, HID_KEYB_USAGE_COMMA, HID_KEYB_USAGE_PERIOD, HID_KEYB_USAGE_FSLASH, RIGHT_SHIFT, HID_KEYB_USAGE_LEFT_ARROW, HID_KEYB_USAGE_DOWN_ARROW},
@@ -281,6 +286,7 @@ static void MX_ICACHE_Init(void);
 static void MX_LPUART1_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -354,7 +360,6 @@ void PressKey(uint8_t c)
     break;
   case RIGHT_SHIFT:
 	keyboardHID.modifiers |= HID_KEYB_RIGHT_SHIFT;
-	currentLayer = 1;
     break;
   case LEFT_CTRL:
 	  keyboardHID.modifiers |= HID_KEYB_LEFT_CTRL;
@@ -484,6 +489,7 @@ int main(void)
   MX_USB_Device_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
   USBD_HandleTypeDef* device = MX_USB_Device_Init();
   uint8_t lastState[5][14];
@@ -496,9 +502,12 @@ int main(void)
 
    HAL_GPIO_WritePin(LOGIC_TRANS_EN_GPIO_Port, LOGIC_TRANS_EN_Pin, GPIO_PIN_SET);
 
+   int timeSinceLastPress = 0;
 
    	   k = 0;
      stepSize = 3;
+
+     uint8_t LED_Off = 0;
 
     while (1){
    	uint8_t wrote = 0;
@@ -547,18 +556,22 @@ int main(void)
 
 			// read from muxes
 			if (colA && lastState[row][col + 0] == 1 && lastLastState[row][col + 0] == 0){
+				timeSinceLastPress = 0;
 				PressKey(KeyboardMatrix[currentLayer][row][col + 0]);
 				//HAL_UART_Transmit(&hlpuart1, matrix[row][col + 0], sizeof(matrix[row][col + 0]), 100);
 				//HAL_UART_Transmit(&hlpuart1, " ", sizeof(" "), 100)
 			} else if (!colA && lastState[row][col + 0] == 0 && lastLastState[row][col + 0] == 1){
+				timeSinceLastPress = 0;
 				ReleaseKey(KeyboardMatrix[currentLayer][row][col + 0]);
 			}
 
 			if (colB && lastState[row][col + 1] == 1 && lastLastState[row][col + 1] == 0){
+				timeSinceLastPress = 0;
 				PressKey(KeyboardMatrix[currentLayer][row][col + 1]);
 				//HAL_UART_Transmit(&hlpuart1, matrix[row][col + 1], sizeof(matrix[row][col + 1]), 100);
 				//HAL_UART_Transmit(&hlpuart1, " ", sizeof(" "), 100);
 			} else if (!colB && lastState[row][col + 1] == 0 && lastLastState[row][col + 1] == 1){
+				timeSinceLastPress = 0;
 				ReleaseKey(KeyboardMatrix[currentLayer][row][col + 1]);
 			}
 
@@ -576,84 +589,125 @@ int main(void)
 	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
 	   // LEDs
 
-	   k = (k + stepSize) % 765;
+	   // turnoff LEDs if we are inactive
+	   if (!High_Perf_Mode && timeSinceLastPress++ < SLEEP_DELAY){
+		   LED_Off = 0;
 
-	      	 for (int x = 0; x < NUM_ROWS; x++){
+		   k = (k + stepSize) % 765;
 
-	  		   if (k < 255)
-	  		   {
-	  			 pixel[x][0].color.g = 254 - k; //[254, 0]
-	  			 pixel[x][0].color.r =  k + 1;  //[1, 255]
-	  			 pixel[x][0].color.b = 0;
-	  		   }
-	  		   else if (k < 510)
-	  		   {
-	  			 pixel[x][0].color.g = 0;
-	  			 pixel[x][0].color.r = 509 - k; //[254, 0]
-	  			 pixel[x][0].color.b = k - 254; //[1, 255]
-	  			 j++;
-	  		   }
-	  		   else if (k < 765)
-	  		   {
-	  			 pixel[x][0].color.g = k - 509; //[1, 255];
-	  			 pixel[x][0].color.r = 0;
-	  			 pixel[x][0].color.b = 764 - k; //[254, 0]
-	  		   }
+		   	   for (int x = 0; x < NUM_ROWS; x++){
 
-
-	  			//not so bright
-	  	       pixel[x][0].color.g >>= 4;
-	  	       pixel[x][0].color.r >>= 4;
-	  	       pixel[x][0].color.b >>= 4;
-
-	  		   pBuff = dmaBuffer[x];
-	  		   for (i = 0; i < NUM_PIXELS; i++)
-	  		   {
-	  			  for (j = 23; j >= 0; j--)
-	  			  {
-	  				if ((pixel[x][i].data >> j) & 0x01)
-	  				{
-	  				  *pBuff = NEOPIXEL_ONE;
-	  				}
-	  				else
-	  				{
-	  				  *pBuff = NEOPIXEL_ZERO;
-	  				}
-	  				pBuff++;
-	  			}
-	  		   }
-	  		   dmaBuffer[x][DMA_BUFF_SIZE - 1] = 0; // last element must be 0!
-
-	  		   switch (x){
-	  			   case 0: // ROW0 = PA3 = T2C4
-	  				   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_4, dmaBuffer[x], DMA_BUFF_SIZE);
-	  				   break;
-	  			   case 1: // ROW1 = PA2 = T2C3
-	  				   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_3, dmaBuffer[x], DMA_BUFF_SIZE);
-	  				   break;
-	  			   case 2: // ROW2 = PA1 = T2C2
-	  				   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_2, dmaBuffer[x], DMA_BUFF_SIZE);
-	  				   break;
-	  			   case 3: // ROW3 = PB0 = T3C3
-	  				   HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_3, dmaBuffer[x], DMA_BUFF_SIZE);
-	  				   break;
-	  			   case 4: // ROW4 = PA0 = T2C1
-	  				   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_1, dmaBuffer[x], DMA_BUFF_SIZE);
-	  				   break;
-	  		   }
-
-	  		   for (i = (NUM_PIXELS - 1); i > 0; i--)
-	  		   {
-	  			 pixel[x][i].data = pixel[x][i - 1].data;
-	  		   }
-
-	      	 }
-
-	  	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
+		   		   if (k < 255)
+		   		   {
+		   			 pixel[x][0].color.g = 254 - k; //[254, 0]
+		   			 pixel[x][0].color.r =  k + 1;  //[1, 255]
+		   			 pixel[x][0].color.b = 0;
+		   		   }
+		   		   else if (k < 510)
+		   		   {
+		   			 pixel[x][0].color.g = 0;
+		   			 pixel[x][0].color.r = 509 - k; //[254, 0]
+		   			 pixel[x][0].color.b = k - 254; //[1, 255]
+		   			 j++;
+		   		   }
+		   		   else if (k < 765)
+		   		   {
+		   			 pixel[x][0].color.g = k - 509; //[1, 255];
+		   			 pixel[x][0].color.r = 0;
+		   			 pixel[x][0].color.b = 764 - k; //[254, 0]
+		   		   }
 
 
+		   			//not so bright
+		   		   pixel[x][0].color.g >>= 4;
+		   		   pixel[x][0].color.r >>= 4;
+		   		   pixel[x][0].color.b >>= 4;
 
+		   		   pBuff = dmaBuffer[x];
+		   		   for (i = 0; i < NUM_PIXELS; i++)
+		   		   {
+		   			  for (j = 23; j >= 0; j--)
+		   			  {
+		   				if ((pixel[x][i].data >> j) & 0x01)
+		   				{
+		   				  *pBuff = NEOPIXEL_ONE;
+		   				}
+		   				else
+		   				{
+		   				  *pBuff = NEOPIXEL_ZERO;
+		   				}
+		   				pBuff++;
+		   			}
+		   		   }
+		   		   dmaBuffer[x][DMA_BUFF_SIZE - 1] = 0; // last element must be 0!
+
+		   		   switch (x){
+		   			   case 0: // ROW0 = PA3 = T2C4
+		   				   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_4, dmaBuffer[x], DMA_BUFF_SIZE);
+		   				   break;
+		   			   case 1: // ROW1 = PA2 = T2C3
+		   				   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_3, dmaBuffer[x], DMA_BUFF_SIZE);
+		   				   break;
+		   			   case 2: // ROW2 = PA1 = T2C2
+		   				   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_2, dmaBuffer[x], DMA_BUFF_SIZE);
+		   				   break;
+		   			   case 3: // ROW3 = PB0 = T3C3
+		   				   HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_3, dmaBuffer[x], DMA_BUFF_SIZE);
+		   				   break;
+		   			   case 4: // ROW4 = PA0 = T2C1
+		   				   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_1, dmaBuffer[x], DMA_BUFF_SIZE);
+		   				   break;
+		   		   }
+
+		   		   for (i = (NUM_PIXELS - 1); i > 0; i--)
+		   		   {
+		   			 pixel[x][i].data = pixel[x][i - 1].data;
+		   		   }
+
+		   	 }
+
+	   } else {
+
+		   if (!LED_Off){
+
+			   LED_Off = 1;
+
+			   uint32_t buff[DMA_BUFF_SIZE];
+			   uint32_t* p = buff;
+			   for (i = 0; i < NUM_PIXELS; i++)
+			   {
+				  for (j = 23; j >= 0; j--)
+				  {
+					  *p = NEOPIXEL_ZERO;
+					p++;
+				}
+			   }
+			   buff[DMA_BUFF_SIZE - 1] = 0; // last element must be 0!
+
+			   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_1, buff, DMA_BUFF_SIZE);
+			   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_2, buff, DMA_BUFF_SIZE);
+			   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_3, buff, DMA_BUFF_SIZE);
+			   HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_4, buff, DMA_BUFF_SIZE);
+			   HAL_TIM_PWM_Start_DMA(&htim3, TIM_CHANNEL_3, buff, DMA_BUFF_SIZE);
+
+			   HAL_Delay(10);
+
+			   HAL_TIM_PWM_Stop_DMA(&htim2, TIM_CHANNEL_1);
+			   HAL_TIM_PWM_Stop_DMA(&htim2, TIM_CHANNEL_2);
+			   HAL_TIM_PWM_Stop_DMA(&htim2, TIM_CHANNEL_3);
+			   HAL_TIM_PWM_Stop_DMA(&htim2, TIM_CHANNEL_4);
+			   HAL_TIM_PWM_Stop_DMA(&htim3, TIM_CHANNEL_3);
+		   }
+	   }
+
+
+	   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
+
+
+
+	   if (!High_Perf_Mode){
 	   HAL_Delay(5);
+	   }
 
     /* USER CODE END WHILE */
 
@@ -806,6 +860,54 @@ static void MX_LPUART1_UART_Init(void)
   /* USER CODE BEGIN LPUART1_Init 2 */
 
   /* USER CODE END LPUART1_Init 2 */
+
+}
+
+/**
+  * @brief USART3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART3_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART3_Init 0 */
+
+  /* USER CODE END USART3_Init 0 */
+
+  /* USER CODE BEGIN USART3_Init 1 */
+
+  /* USER CODE END USART3_Init 1 */
+  huart3.Instance = USART3;
+  huart3.Init.BaudRate = 115200;
+  huart3.Init.WordLength = UART_WORDLENGTH_8B;
+  huart3.Init.StopBits = UART_STOPBITS_1;
+  huart3.Init.Parity = UART_PARITY_NONE;
+  huart3.Init.Mode = UART_MODE_TX_RX;
+  huart3.Init.HwFlowCtl = UART_HWCONTROL_RTS_CTS;
+  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart3.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart3.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  huart3.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetTxFifoThreshold(&huart3, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetRxFifoThreshold(&huart3, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_DisableFifoMode(&huart3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART3_Init 2 */
+
+  /* USER CODE END USART3_Init 2 */
 
 }
 
@@ -981,8 +1083,8 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
@@ -990,20 +1092,20 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, ROW3_Pin|COLMUXC_Pin|ROW2_Pin|COLMUXA_Pin
+  HAL_GPIO_WritePin(GPIOE, ROW4_Pin|COLMUXC_Pin|ROW2_Pin|COLMUXA_Pin
                           |COLMUXB_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, ROW1_Pin|GPIO_PIN_7, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, ROW4_Pin|ROW0_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, ROW3_Pin|ROW0_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, LOGIC_TRANS_EN_Pin|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : ROW3_Pin ROW2_Pin */
-  GPIO_InitStruct.Pin = ROW3_Pin|ROW2_Pin;
+  /*Configure GPIO pins : ROW4_Pin ROW2_Pin */
+  GPIO_InitStruct.Pin = ROW4_Pin|ROW2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -1015,6 +1117,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : User_Button_Pin */
+  GPIO_InitStruct.Pin = User_Button_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : COLOUTA_Pin */
   GPIO_InitStruct.Pin = COLOUTA_Pin;
@@ -1042,8 +1150,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : ROW4_Pin ROW0_Pin */
-  GPIO_InitStruct.Pin = ROW4_Pin|ROW0_Pin;
+  /*Configure GPIO pins : ROW3_Pin ROW0_Pin */
+  GPIO_InitStruct.Pin = ROW3_Pin|ROW0_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -1063,11 +1171,24 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI13_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI13_IRQn);
+
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
+
+void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin)
+{
+  if(GPIO_Pin == GPIO_PIN_13) {
+    High_Perf_Mode ^= 1;
+  } else {
+      __NOP();
+  }
+}
 
 /* USER CODE END 4 */
 

@@ -101,15 +101,6 @@ void GetPointerData(uint8_t * pbuf)
   pbuf[3] = 0;
 }
 
-/**
-  * @brief  GPIO EXTI Rising Callback function
-  *         Handle remote-wakeup through key button
-  * @param  GPIO_Pin
-  * @retval None
-  */
-void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin)
-{
-}
 
 /* USER CODE END 1 */
 
