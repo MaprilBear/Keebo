@@ -23,6 +23,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "st7789.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -38,7 +40,7 @@ struct keyboardHID_t {
 	uint8_t key4;
 	uint8_t key5;
 	uint8_t key6;
-
+	uint8_t media;
 };
 
 // SK6812-E
@@ -213,8 +215,10 @@ typedef union
 #define PREV 0xEA
 #define NEXT 0xEB
 #define CALC 0xFB
-#define VOL_UP 0xED
-#define VOL_DN 0xEE
+#define VOL_UP 0xE9
+#define VOL_DN 0xEA
+#define KEY_VOLUMEUP 0xE9 // Keyboard Volume Up
+#define KEY_VOLUMEDOWN 0xEA // Keyboard Volume Down
 #define APP_A 0xEF
 #define APP_B 0xF0
 #define FUNC_KEY 0xF1
@@ -231,6 +235,10 @@ typedef union
 UART_HandleTypeDef hlpuart1;
 UART_HandleTypeDef huart3;
 
+SPI_HandleTypeDef hspi1;
+DMA_HandleTypeDef hdma_spi1_tx;
+
+TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 DMA_HandleTypeDef hdma_tim2_ch4;
@@ -244,7 +252,7 @@ DMA_HandleTypeDef hdma_tim3_ch3;
 uint8_t High_Perf_Mode = 0;
 
 
-struct keyboardHID_t keyboardHID = {0,0,0,0,0,0,0,0};
+struct keyboardHID_t keyboardHID = {0,0,0,0,0,0,0,0,0};
 
 uint8_t KeyboardMatrix[3][5][14] = {
 	{{HID_KEYB_USAGE_ESCAPE,  HID_KEYB_USAGE_1, HID_KEYB_USAGE_2, HID_KEYB_USAGE_3, HID_KEYB_USAGE_4, HID_KEYB_USAGE_5, HID_KEYB_USAGE_6, HID_KEYB_USAGE_7, HID_KEYB_USAGE_8, HID_KEYB_USAGE_9, HID_KEYB_USAGE_0, HID_KEYB_USAGE_MINUS, HID_KEYB_USAGE_EQUAL, HID_KEYB_USAGE_BACKSPACE},
@@ -287,6 +295,8 @@ static void MX_LPUART1_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_USART3_UART_Init(void);
+static void MX_SPI1_Init(void);
+static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -336,7 +346,7 @@ void RemoveKeyFromPressedList(uint8_t keycode) {
   //
   // Find the usage code in the current list.
   //
-  for (int i = 0; i < 6; i++)
+  for (int i = 2; i < 8; i++)
   {
     if (((uint8_t*)&keyboardHID)[i] == keycode)
     {
@@ -391,6 +401,10 @@ void PressKey(uint8_t c)
   case APP_A:
   case APP_B:
     return;
+  case KEY_VOLUMEUP:
+  case KEY_VOLUMEDOWN:
+	  keyboardHID.media = c;
+	  return;
   default:
 	  AddKeyToPressedList(c);
     //KeyStateChange((void *)&g_sKeyboardDevice, modifierFlags, c, true);
@@ -439,6 +453,10 @@ void ReleaseKey(uint8_t c)
   case APP_A:
   case APP_B:
     return;
+  case KEY_VOLUMEUP:
+  case KEY_VOLUMEDOWN:
+	  keyboardHID.media = 0;
+	  return;
   default:
 	  RemoveKeyFromPressedList(c);
     return;
@@ -490,15 +508,29 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_USART3_UART_Init();
+  MX_SPI1_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   USBD_HandleTypeDef* device = MX_USB_Device_Init();
   uint8_t lastState[5][14];
    uint8_t lastLastState[5][14];
+   uint8_t MSG[75] = {'\0'};
+
+   int count = 0;
+
+   HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL);
+
+  ST7789_Init();
+
+  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_7);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  //ST7789_Test();
+  ST7789_DrawImage(0, 0, 320, 172, (uint16_t *)subaru);
 
    HAL_GPIO_WritePin(LOGIC_TRANS_EN_GPIO_Port, LOGIC_TRANS_EN_Pin, GPIO_PIN_SET);
 
@@ -509,10 +541,30 @@ int main(void)
 
      uint8_t LED_Off = 0;
 
+     int lastEncVal = 0;
+
     while (1){
    	uint8_t wrote = 0;
    	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
    	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_7);
+
+   	//ReleaseKey(KEY_VOLUMEUP);
+   	//ReleaseKey(KEY_VOLUMEDOWN);
+
+   	int16_t encVal = (int16_t) TIM1->CNT;
+
+   	if (encVal < lastEncVal){
+   		sprintf(MSG, "%d Volume Up, Encoder Ticks = %d\n\r", count, encVal);
+		HAL_UART_Transmit(&hlpuart1, MSG, sizeof(MSG), 100);
+		PressKey(KEY_VOLUMEUP);
+   	} else if (encVal > lastEncVal){
+   		sprintf(MSG, "%d Volume Down, Encoder Ticks = %d\n\r", count, encVal);
+		HAL_UART_Transmit(&hlpuart1, MSG, sizeof(MSG), 100);
+		PressKey(KEY_VOLUMEDOWN);
+   	}
+
+   	lastEncVal = encVal;
+   	count++;
 
    	// iterate through all rows and columns
    for (int row = 0; row < 5; row++){
@@ -912,6 +964,97 @@ static void MX_USART3_UART_Init(void)
 }
 
 /**
+  * @brief SPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI1_Init(void)
+{
+
+  /* USER CODE BEGIN SPI1_Init 0 */
+
+  /* USER CODE END SPI1_Init 0 */
+
+  /* USER CODE BEGIN SPI1_Init 1 */
+
+  /* USER CODE END SPI1_Init 1 */
+  /* SPI1 parameter configuration*/
+  hspi1.Instance = SPI1;
+  hspi1.Init.Mode = SPI_MODE_MASTER;
+  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi1.Init.CRCPolynomial = 7;
+  hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+  hspi1.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI1_Init 2 */
+
+  /* USER CODE END SPI1_Init 2 */
+
+}
+
+/**
+  * @brief TIM1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM1_Init(void)
+{
+
+  /* USER CODE BEGIN TIM1_Init 0 */
+
+  /* USER CODE END TIM1_Init 0 */
+
+  TIM_Encoder_InitTypeDef sConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM1_Init 1 */
+
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 0;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 65535;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI2;
+  sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC1Filter = 10;
+  sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC2Filter = 0;
+  if (HAL_TIM_Encoder_Init(&htim1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM1_Init 2 */
+
+  /* USER CODE END TIM1_Init 2 */
+
+}
+
+/**
   * @brief TIM2 Initialization Function
   * @param None
   * @retval None
@@ -933,7 +1076,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 39;
+  htim2.Init.Period = 78;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -1004,7 +1147,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 39;
+  htim3.Init.Period = 78;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -1067,6 +1210,9 @@ static void MX_DMA_Init(void)
   /* DMA1_Channel5_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
+  /* DMA1_Channel6_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel6_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel6_IRQn);
 
 }
 
@@ -1088,8 +1234,8 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
-  HAL_PWREx_EnableVddIO2();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  HAL_PWREx_EnableVddIO2();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, ROW4_Pin|COLMUXC_Pin|ROW2_Pin|COLMUXA_Pin
@@ -1099,7 +1245,8 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, ROW1_Pin|GPIO_PIN_7, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, ROW3_Pin|ROW0_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12|TFT_RESET_Pin|TFT_DC_Pin|ROW3_Pin
+                          |ROW0_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, LOGIC_TRANS_EN_Pin|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
@@ -1143,12 +1290,25 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(COLOUTB_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : PD12 TFT_RESET_Pin TFT_DC_Pin */
+  GPIO_InitStruct.Pin = GPIO_PIN_12|TFT_RESET_Pin|TFT_DC_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
   /*Configure GPIO pin : PC7 */
   GPIO_InitStruct.Pin = GPIO_PIN_7;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : ENC_SW_Pin */
+  GPIO_InitStruct.Pin = ENC_SW_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(ENC_SW_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : ROW3_Pin ROW0_Pin */
   GPIO_InitStruct.Pin = ROW3_Pin|ROW0_Pin;
