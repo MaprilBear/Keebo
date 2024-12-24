@@ -42,6 +42,8 @@ extern "C" {
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
 
+extern SPI_HandleTypeDef hspi1;
+
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -78,6 +80,16 @@ void Error_Handler(void);
 #define ROW1_GPIO_Port GPIOC
 #define COLOUTB_Pin GPIO_PIN_1
 #define COLOUTB_GPIO_Port GPIOG
+#define ENC_A_Pin GPIO_PIN_9
+#define ENC_A_GPIO_Port GPIOE
+#define ENC_B_Pin GPIO_PIN_11
+#define ENC_B_GPIO_Port GPIOE
+#define TFT_RESET_Pin GPIO_PIN_14
+#define TFT_RESET_GPIO_Port GPIOD
+#define TFT_DC_Pin GPIO_PIN_15
+#define TFT_DC_GPIO_Port GPIOD
+#define ENC_SW_Pin GPIO_PIN_8
+#define ENC_SW_GPIO_Port GPIOC
 #define ROW3_Pin GPIO_PIN_5
 #define ROW3_GPIO_Port GPIOD
 #define ROW0_Pin GPIO_PIN_6

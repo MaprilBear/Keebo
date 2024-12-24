@@ -234,16 +234,6 @@ __ALIGN_BEGIN static uint8_t HID_CUSTOM_ReportDesc[HID_CUSTOM_REPORT_DESC_SIZE] 
 		0x75, 0x08,                         //     Report Size (8)
 		0x81, 0x01,                         //     Input (Constant) reserved byte(1)
 
-		0x95, 0x05,                         //     Report Count (5)
-		0x75, 0x01,                         //     Report Size (1)
-		0x05, 0x08,                         //     Usage Page (Page# for LEDs)
-		0x19, 0x01,                         //     Usage Minimum (1)
-		0x29, 0x05,                         //     Usage Maximum (5)
-		0x91, 0x02,                         //     Output (Data, Variable, Absolute), Led report
-		0x95, 0x01,                         //     Report Count (1)
-		0x75, 0x03,                         //     Report Size (3)
-		0x91, 0x01,                         //     Output (Data, Variable, Absolute), Led report padding
-
 		0x95, 0x06,                         //     Report Count (6)
 		0x75, 0x08,                         //     Report Size (8)
 		0x15, 0x00,                         //     Logical Minimum (0)
@@ -253,6 +243,25 @@ __ALIGN_BEGIN static uint8_t HID_CUSTOM_ReportDesc[HID_CUSTOM_REPORT_DESC_SIZE] 
 		0x29, 0x65,                         //     Usage Maximum (101)
 		0x81, 0x00,                         //     Input (Data, Array) Key array(6 bytes)
 
+		0x95, 0x01,                         //     Report Count (1)
+		0x75, 0x08,                         //     Report Size (8)
+		0x05, 0x0C,     					//		Usage Page (Consumer)
+		0x09, 0x01,      					// 		Usage(Consumer Control)
+		0x15, 0x00,      					// 		Logical Minimum(0x0)
+		0x25, 0xEA,      					// 		Logical Maximum(0xEA)
+		0x09, 0xE9,      					// 		Usage(Volume Increment)
+		0x09, 0xEA,      					// 		Usage(Volume Decrement)
+		0x81, 0x00,                         //     Input (Data, Array) Key array(1 bytes)
+
+		0x95, 0x05,                         //     Report Count (5)
+		0x75, 0x01,                         //     Report Size (1)
+		0x05, 0x08,                         //     Usage Page (Page# for LEDs)
+		0x19, 0x01,                         //     Usage Minimum (1)
+		0x29, 0x05,                         //     Usage Maximum (5)
+		0x91, 0x02,                         //     Output (Data, Variable, Absolute), Led report
+		0x95, 0x01,                         //     Report Count (1)
+		0x75, 0x03,                         //     Report Size (3)
+		0x91, 0x01,                         //     Output (Data, Variable, Absolute), Led report padding
 
 		0x09, 0x05,                         //     Usage (Vendor Defined)
 		0x15, 0x00,                         //     Logical Minimum (0)
