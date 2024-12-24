@@ -1,0 +1,3 @@
+[submodule "sw/zmk-config"]
+	path = sw/zmk-config
+	url = https://github.com/MaprilBear/keebo-zmk-config.git
