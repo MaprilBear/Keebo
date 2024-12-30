@@ -1,0 +1,9 @@
+Manufacturer=Texas Instruments
+PartNumber=TXU0101DCKR
+PartCategory=Integrated Circuit
+PackageCategory=SOT23 (6-Pin)
+PinCount=6
+Version=1.2
+Released=2022-07-29 13:29:32
+Downloaded=2024-12-29 22:20:15
+3D=Y

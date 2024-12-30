@@ -15,4 +15,6 @@
   (lib (name "STZio")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/STZio.kicad_sym")(options "")(descr ""))
   (lib (name "MS88SF2")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/nrf52840-MS88F2/MS88SF2.kicad_sym")(options "")(descr ""))
   (lib (name "NUP4114UPXV6T2G")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/NUP4114UPXV6T2G/KiCad/NUP4114UPXV6T2G.kicad_sym")(options "")(descr ""))
+  (lib (name "TXU0101DCKR")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/TXU0101DCKR/KiCad/TXU0101DCKR.kicad_sym")(options "")(descr ""))
+  (lib (name "W25Q64JVXGIQ_TR")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/W25Q64JVXGIQ_TR/KiCad/W25Q64JVXGIQ_TR.kicad_sym")(options "")(descr ""))
 )

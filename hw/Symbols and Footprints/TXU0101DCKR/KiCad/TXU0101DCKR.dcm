@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TXU0101DCKR
+D Single-Bit Fixed Direction Voltage-Level Translator with Schmitt-Trigger Inputs and 3-State Outputs
+K
+F https://www.ti.com/lit/ds/symlink/txu0101.pdf?HQS=dis-mous-null-mousermode-dsf-pf-null-wwe&ts=1659089504788
+$ENDCMP
+#
+#End Doc Library

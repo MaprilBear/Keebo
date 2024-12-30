@@ -24,4 +24,6 @@
   (lib (name "NUP4114")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/NUP4114UPXV6T2G/KiCad")(options "")(descr ""))
   (lib (name "nrf52840-MS88F2")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/nrf52840-MS88F2")(options "")(descr ""))
   (lib (name "Adafruit")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/Adafruit.pretty")(options "")(descr ""))
+  (lib (name "TXU0101DCKR")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/TXU0101DCKR/KiCad")(options "")(descr ""))
+  (lib (name "W25Q64JVXGIQ_TR")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/W25Q64JVXGIQ_TR/KiCad")(options "")(descr ""))
 )

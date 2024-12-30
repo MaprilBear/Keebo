@@ -111,10 +111,10 @@
       },
       "rules": {
         "max_error": 0.005,
-        "min_clearance": 0.127,
-        "min_connection": 0.127,
-        "min_copper_edge_clearance": 0.29999899999999996,
-        "min_hole_clearance": 0.32999999999999996,
+        "min_clearance": 0.09999999999999999,
+        "min_connection": 0.09999999999999999,
+        "min_copper_edge_clearance": 0.3,
+        "min_hole_clearance": 0.35,
         "min_hole_to_hole": 0.5,
         "min_microvia_diameter": 0.19999999999999998,
         "min_microvia_drill": 0.09999999999999999,
@@ -122,10 +122,10 @@
         "min_silk_clearance": 0.0,
         "min_text_height": 1.0,
         "min_text_thickness": 0.153,
-        "min_through_hole_diameter": 0.3,
-        "min_track_width": 0.127,
-        "min_via_annular_width": 0.13,
-        "min_via_diameter": 0.5,
+        "min_through_hole_diameter": 0.15,
+        "min_track_width": 0.09999999999999999,
+        "min_via_annular_width": 0.09999999999999999,
+        "min_via_diameter": 0.25,
         "solder_mask_clearance": 0.0,
         "solder_mask_min_width": 0.0,
         "solder_mask_to_copper_clearance": 0.005,
@@ -183,6 +183,10 @@
           "drill": 0.0
         },
         {
+          "diameter": 0.25,
+          "drill": 0.15
+        },
+        {
           "diameter": 0.6,
           "drill": 0.3
         }
@@ -197,7 +201,12 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [],
+    "erc_exclusions": [
+      "pin_to_pin|1714500|1498600|8451581a-0061-4aea-ac84-669f360a8ece|ba24620b-cd17-4cef-8035-565f70ed16ee|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d",
+      "pin_to_pin|1714500|1498600|8451581a-0061-4aea-ac84-669f360a8ece|ece847e6-a589-4647-aeea-6fd58c728a70|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d",
+      "pin_to_pin|1714500|1727200|ba24620b-cd17-4cef-8035-565f70ed16ee|ece847e6-a589-4647-aeea-6fd58c728a70|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d",
+      "pin_to_pin|1714500|2336800|a18371cc-e1ac-4f83-985c-724472c5443e|c1dcd09b-491a-4578-8178-c85bc5f22f9b|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d"
+    ],
     "meta": {
       "version": 0
     },
