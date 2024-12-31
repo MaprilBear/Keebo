@@ -34,9 +34,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.305,
-          "height": 0.61,
-          "width": 0.61
+          "drill": 0.0,
+          "height": 1.0,
+          "width": 0.7
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -45,7 +45,7 @@
         "silk_text_thickness": 0.15,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.19999999999999998
         }
       },
       "diff_pair_dimensions": [
@@ -74,14 +74,14 @@
         "footprint": "error",
         "footprint_type_mismatch": "ignore",
         "hole_clearance": "error",
-        "hole_near_hole": "ignore",
+        "hole_near_hole": "warning",
         "invalid_outline": "error",
         "isolated_copper": "error",
         "item_on_disabled_layer": "error",
         "items_not_allowed": "error",
         "length_out_of_range": "error",
         "lib_footprint_issues": "warning",
-        "lib_footprint_mismatch": "warning",
+        "lib_footprint_mismatch": "ignore",
         "malformed_courtyard": "error",
         "microvia_drill_out_of_range": "error",
         "missing_courtyard": "ignore",
@@ -91,9 +91,9 @@
         "padstack": "warning",
         "pth_inside_courtyard": "error",
         "shorting_items": "error",
-        "silk_edge_clearance": "warning",
+        "silk_edge_clearance": "ignore",
         "silk_over_copper": "ignore",
-        "silk_overlap": "warning",
+        "silk_overlap": "ignore",
         "skew_out_of_range": "error",
         "solder_mask_bridge": "error",
         "starved_thermal": "error",
@@ -111,21 +111,21 @@
       },
       "rules": {
         "max_error": 0.005,
-        "min_clearance": 0.09999999999999999,
-        "min_connection": 0.09999999999999999,
-        "min_copper_edge_clearance": 0.3,
+        "min_clearance": 0.15,
+        "min_connection": 0.15,
+        "min_copper_edge_clearance": 0.19999999999999998,
         "min_hole_clearance": 0.35,
-        "min_hole_to_hole": 0.5,
-        "min_microvia_diameter": 0.19999999999999998,
-        "min_microvia_drill": 0.09999999999999999,
+        "min_hole_to_hole": 0.19999999999999998,
+        "min_microvia_diameter": 0.0,
+        "min_microvia_drill": 0.0,
         "min_resolved_spokes": 2,
-        "min_silk_clearance": 0.0,
+        "min_silk_clearance": 0.15,
         "min_text_height": 1.0,
         "min_text_thickness": 0.153,
-        "min_through_hole_diameter": 0.15,
-        "min_track_width": 0.09999999999999999,
-        "min_via_annular_width": 0.09999999999999999,
-        "min_via_diameter": 0.25,
+        "min_through_hole_diameter": 0.3,
+        "min_track_width": 0.15,
+        "min_via_annular_width": 0.049999999999999996,
+        "min_via_diameter": 0.39999999999999997,
         "solder_mask_clearance": 0.0,
         "solder_mask_min_width": 0.0,
         "solder_mask_to_copper_clearance": 0.005,
@@ -173,9 +173,14 @@
       ],
       "track_widths": [
         0.0,
+        0.16,
         0.1778,
         0.2,
-        0.254
+        0.254,
+        0.3,
+        0.4,
+        0.5,
+        0.6
       ],
       "via_dimensions": [
         {
@@ -183,12 +188,16 @@
           "drill": 0.0
         },
         {
-          "diameter": 0.25,
-          "drill": 0.15
+          "diameter": 0.45,
+          "drill": 0.3
         },
         {
           "diameter": 0.6,
-          "drill": 0.3
+          "drill": 0.45
+        },
+        {
+          "diameter": 0.8,
+          "drill": 0.65
         }
       ],
       "zones_allow_external_fillets": false
@@ -204,8 +213,11 @@
     "erc_exclusions": [
       "pin_to_pin|1714500|1498600|8451581a-0061-4aea-ac84-669f360a8ece|ba24620b-cd17-4cef-8035-565f70ed16ee|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d",
       "pin_to_pin|1714500|1498600|8451581a-0061-4aea-ac84-669f360a8ece|ece847e6-a589-4647-aeea-6fd58c728a70|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d",
+      "pin_to_pin|1714500|1727200|ba24620b-cd17-4cef-8035-565f70ed16ee|8451581a-0061-4aea-ac84-669f360a8ece|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d",
       "pin_to_pin|1714500|1727200|ba24620b-cd17-4cef-8035-565f70ed16ee|ece847e6-a589-4647-aeea-6fd58c728a70|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d",
-      "pin_to_pin|1714500|2336800|a18371cc-e1ac-4f83-985c-724472c5443e|c1dcd09b-491a-4578-8178-c85bc5f22f9b|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d"
+      "pin_to_pin|1714500|1981200|ece847e6-a589-4647-aeea-6fd58c728a70|8451581a-0061-4aea-ac84-669f360a8ece|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d",
+      "pin_to_pin|1714500|2336800|a18371cc-e1ac-4f83-985c-724472c5443e|c1dcd09b-491a-4578-8178-c85bc5f22f9b|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d",
+      "pin_to_pin|1714500|2362200|c1dcd09b-491a-4578-8178-c85bc5f22f9b|a18371cc-e1ac-4f83-985c-724472c5443e|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d|/114a8155-d6d9-4c58-92da-1dc6dcd9396d"
     ],
     "meta": {
       "version": 0
@@ -395,7 +407,7 @@
       "global_label_dangling": "warning",
       "hier_label_mismatch": "error",
       "label_dangling": "error",
-      "lib_symbol_issues": "warning",
+      "lib_symbol_issues": "ignore",
       "missing_bidi_pin": "warning",
       "missing_input_pin": "warning",
       "missing_power_pin": "error",
@@ -428,7 +440,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.1778,
+        "clearance": 0.2,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -438,14 +450,14 @@
         "name": "Default",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.1778,
-        "via_diameter": 0.6,
+        "track_width": 0.2,
+        "via_diameter": 0.45,
         "via_drill": 0.3,
         "wire_width": 6
       },
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.3,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -455,25 +467,42 @@
         "name": "Power",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.254,
+        "track_width": 0.3,
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
       },
       {
         "bus_width": 12,
-        "clearance": 0.1778,
+        "clearance": 0.1,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
         "line_style": 0,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
-        "name": "Signal",
+        "name": "Small",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.1778,
-        "via_diameter": 0.6,
+        "track_width": 0.1,
+        "via_diameter": 0.4,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.15,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "USB",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.1,
+        "via_diameter": 0.4,
         "via_drill": 0.3,
         "wire_width": 6
       }
@@ -486,19 +515,35 @@
     "netclass_patterns": [
       {
         "netclass": "Power",
-        "pattern": "GND"
-      },
-      {
-        "netclass": "Power",
-        "pattern": "/Switch_OUT"
-      },
-      {
-        "netclass": "Power",
         "pattern": "VBUS"
       },
       {
         "netclass": "Power",
         "pattern": "VBAT"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "VDD"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "VSYS"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "/D+"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "/D-"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "GND"
       }
     ]
   },
