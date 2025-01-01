@@ -200,7 +200,7 @@
           "drill": 0.65
         }
       ],
-      "zones_allow_external_fillets": false
+      "zones_allow_external_fillets": true
     },
     "layer_presets": [],
     "viewports": []
@@ -553,7 +553,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "PCB.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
