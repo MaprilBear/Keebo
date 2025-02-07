@@ -27,4 +27,5 @@
   (lib (name "TXU0101DCKR")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/TXU0101DCKR/KiCad")(options "")(descr ""))
   (lib (name "W25Q64JVXGIQ_TR")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/W25Q64JVXGIQ_TR/KiCad")(options "")(descr ""))
   (lib (name "Seeed Studio XIAO Series Library")(type "KiCad")(uri "C:/Repositories/Keebo/hw/Symbols and Footprints/Seeed Studio XIAO Series Library")(options "")(descr ""))
+  (lib (name "XIAO")(type "KiCad")(uri "G:/Repositories/Keebo/hw/Symbols and Footprints/XIAO/XIAO.pretty")(options "")(descr ""))
 )

@@ -508,9 +508,9 @@
         "name": "Power",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.3,
-        "via_diameter": 0.6,
-        "via_drill": 0.3,
+        "track_width": 0.5,
+        "via_diameter": 0.7,
+        "via_drill": 0.4,
         "wire_width": 6
       },
       {
@@ -560,15 +560,11 @@
       },
       {
         "netclass": "Power",
-        "pattern": "VBAT"
+        "pattern": "/VBAT"
       },
       {
         "netclass": "Default",
         "pattern": "VDD"
-      },
-      {
-        "netclass": "Default",
-        "pattern": "*"
       },
       {
         "netclass": "Power",
@@ -585,6 +581,14 @@
       {
         "netclass": "USB",
         "pattern": "GND"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+3V3"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+5V"
       }
     ]
   },
@@ -704,7 +708,7 @@
   "sheets": [
     [
       "114a8155-d6d9-4c58-92da-1dc6dcd9396d",
-      ""
+      "Root"
     ]
   ],
   "text_variables": {
