@@ -194,3 +194,11 @@ sw/.metadata/
 sw/Keyswitch Matrix Test/.vscode/
 
 sw/Keyswitch Matrix Test/.extSettings
+
+hw/PCB/Keypad/Keypad/production/
+
+hw/PCB/Keypad/Keypad/Keypad-backups/
+
+hw/PCB/Keypad/Keypad/#auto_saved_files#
+
+hw/PCB/_autosave-PCB.kicad_pcb

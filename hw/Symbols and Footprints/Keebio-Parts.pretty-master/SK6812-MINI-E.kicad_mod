@@ -1,26 +1,197 @@
-(module "SK6812-MINI-E" (layer F.Cu) (tedit 5ECEB660)
-  (fp_text reference "REF**" (at 0 2.1 unlocked) (layer F.SilkS)
-    (effects (font (size 0.7 0.7) (thickness 0.15)))
-  )
-  (fp_text value "SK6812-MINI-E" (at 0 -0.5 unlocked) (layer F.SilkS) hide
-    (effects (font (size 1 1) (thickness 0.15)))
-  )
-  (fp_poly (pts (xy 2.8 -1.4) (xy 2.2 -1.4) (xy 2.2 -2)) (layer F.SilkS) (width 0.1))
-  (fp_line (start 1.6 -1.4) (end 1.6 1.4) (layer Cmts.User) (width 0.12))
-  (fp_line (start 1.6 1.4) (end -1.6 1.4) (layer Cmts.User) (width 0.12))
-  (fp_line (start -1.6 1.4) (end -1.6 -1.4) (layer Cmts.User) (width 0.12))
-  (fp_line (start -1.6 -1.4) (end 1.6 -1.4) (layer Cmts.User) (width 0.12))
-  (fp_line (start 1.7 -1.5) (end 1.7 1.5) (layer Edge.Cuts) (width 0.12))
-  (fp_line (start 1.7 1.5) (end -1.7 1.5) (layer Edge.Cuts) (width 0.12))
-  (fp_line (start -1.7 1.5) (end -1.7 -1.5) (layer Edge.Cuts) (width 0.12))
-  (fp_line (start -1.7 -1.5) (end 1.7 -1.5) (layer Edge.Cuts) (width 0.12))
-  (pad "1" smd rect (at -2.55 0.75) (size 1.7 0.82) (layers "F.Cu" "F.Paste" "F.Mask"))
-  (pad "2" smd rect (at -2.55 -0.75) (size 1.7 0.82) (layers "F.Cu" "F.Paste" "F.Mask"))
-  (pad "4" smd rect (at 2.55 0.75) (size 1.7 0.82) (layers "F.Cu" "F.Paste" "F.Mask"))
-  (pad "3" smd roundrect (at 2.55 -0.75) (size 1.7 0.82) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25))
-  (model "/Users/danny/syncproj/kicad-libs/footprints/Keebio-Parts.pretty/3dmodels/SK6812MINI-E v1.step"
-    (at (xyz 0 0 0))
-    (scale (xyz 1 1 1))
-    (rotate (xyz 90 0 0))
-  )
+(footprint "SK6812-MINI-E"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "LED1"
+		(at 0 2.1 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "94581d93-299d-4f94-a32e-de3129549646")
+		(effects
+			(font
+				(size 0.7 0.7)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SK6812-MINI-E"
+		(at -0.2 -2.45 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "0c27a747-1136-44e6-b5ec-3fa37cd0895a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "Keebio-Parts.pretty-master:SK6812-MINI-E"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "482f73cc-0be6-45ff-941e-5523c9c28239")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d1215f25-b54c-437c-bc0f-ebedd2f3de0d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7d0772ed-c4cb-455d-8bcd-7cd4e680d4e5")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_poly
+		(pts
+			(xy 2.8 -1.4) (xy 2.2 -1.4) (xy 2.2 -2)
+		)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.SilkS")
+		(uuid "15da319b-629c-4334-8ca1-b0dc88ef756f")
+	)
+	(fp_line
+		(start -1.6 -1.4)
+		(end -1.6 1.4)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(uuid "150140d4-7773-465b-9ace-b466200fb4c7")
+	)
+	(fp_line
+		(start -1.6 1.4)
+		(end 1.6 1.4)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(uuid "f4d6c926-3324-419c-8eb1-27e4565c9f26")
+	)
+	(fp_line
+		(start 1.6 -1.4)
+		(end -1.6 -1.4)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(uuid "7dd43aa3-1c92-4283-b5b2-8c545bcdf2f2")
+	)
+	(fp_line
+		(start 1.6 1.4)
+		(end 1.6 -1.4)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(uuid "146899d8-55aa-4c3d-914c-0325ef8c6865")
+	)
+	(fp_line
+		(start -1.7 -1.5)
+		(end -1.7 1.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+		(uuid "f0afb757-cb31-499a-8dcc-9df0af1980a2")
+	)
+	(fp_line
+		(start -1.7 1.5)
+		(end 1.7 1.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+		(uuid "e953d69b-eecd-438b-89e9-47c54a096980")
+	)
+	(fp_line
+		(start 1.7 -1.5)
+		(end -1.7 -1.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+		(uuid "7da1cc11-0ba5-439a-b8b2-2eaa85a1f8b4")
+	)
+	(fp_line
+		(start 1.7 1.5)
+		(end 1.7 -1.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "Edge.Cuts")
+		(uuid "ff7fa182-0bdf-4403-a080-24aa530a5c37")
+	)
+	(pad "1" smd rect
+		(at -2.7 0.75)
+		(size 1.4 0.82)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "f1aaf52f-4feb-42e7-b34f-1b8ff46afff5")
+	)
+	(pad "2" smd rect
+		(at -2.7 -0.75)
+		(size 1.4 0.82)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "cf368fb3-24a4-4045-88a3-8f17dc1d4fb2")
+	)
+	(pad "3" smd roundrect
+		(at 2.7 -0.75)
+		(size 1.4 0.82)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "f370aa36-2e6b-4811-b58e-d6db93de8c8a")
+	)
+	(pad "4" smd rect
+		(at 2.7 0.75)
+		(size 1.4 0.82)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "a11be9e7-8b32-42bb-b5e3-8af0336dba43")
+	)
+	(model "/Users/danny/syncproj/kicad-libs/footprints/Keebio-Parts.pretty/3dmodels/SK6812MINI-E v1.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 90 0 0)
+		)
+	)
 )
